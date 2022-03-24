@@ -6,3 +6,5 @@
 
 ## hehehehehehehe
 
+
+This repository is for our IT-Projektarbeit Module at Fachhochschule Technikum Wien.
