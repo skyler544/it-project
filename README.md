@@ -5,6 +5,7 @@
 - Gameboard.js
 - Spieler.js
 - Feld.js
+
 (Namen sind jetzt mal egal.)
 Modular arbeiten und auch Klassen benutzen. (Vorschlag!!!)
 -> Klassen:
