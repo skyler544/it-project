@@ -40,4 +40,4 @@ class DATEI {
 }
 ```
 
-[w3schools] (https://www.w3schools.com/js/js_classes.asp)
+[w3schools](https://www.w3schools.com/js/js_classes.asp)
