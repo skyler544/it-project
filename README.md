@@ -38,6 +38,7 @@ class DATEI {
         this.Ordner = Ordner;
     }
 }
+var Datei1 = new Datei("Hi", "text", "Hallo Welt", "itp");
 ```
 
 [w3schools](https://www.w3schools.com/js/js_classes.asp)
