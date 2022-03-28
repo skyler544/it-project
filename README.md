@@ -29,13 +29,15 @@ class *NAME* {
 ```
 
 Bsp:
-`class DATEI {
+```
+class DATEI {
     constructor(Name, Type, Inhalt, Ordner) {
         this.Name = Name;
         this.Type = Type;
         this.Inhalt = Inhalt;
         this.Ordner = Ordner;
     }
-}`
+}
+```
 
 [w3schools] (https://www.w3schools.com/js/js_classes.asp)
