@@ -10,18 +10,31 @@ var gameArea = {
         gameArea.resize();
 
         // just some intro, test or whatever you like ...
-        let START = new component("text", "Click to Start");
+        /* let START = new component("text", "Click to Start");
         START.y = 45;
         START.width = 10; // width = font-size, height = font-family
         START.height = "Arial"; // width = font-size, height = font-family
         START.x = 20;
         START.color = "white";
         START.percentTOpixel(); // x, y, width and height will be changed to pixel (relative to the size of the game)
-        START.update(); // we need to update the game after each action (also update reguarly later) -> setIntervall
+        START.update(); // we need to update the game after each action (also update reguarly later) -> setIntervall */
+        let BLOCK = new component("rect", "blue");
+        BLOCK.x = 0;
+        BLOCK.y = 0;
+        BLOCK.width = 10;
+        BLOCK.height = 10;
+        // BLOCK.color = "blue"; -- optional
+        BLOCK.percentTOpixel();
+        BLOCK.update();
     },
+    // please also check if in vertical mode - or force vertical mode ...
     resize : function () { // absolute size not important! -> only proportion
-        gameArea.canvas.width = window.innerWidth * 3; // * 3 for better resolution
+        // resizing only dependent from height - don't make it also dependent from the width, beacause then the proportion will be lost!!!
         gameArea.canvas.height = window.innerHeight * 3;  // * 3 for better resolution
+        gameArea.canvas.width = gameArea.canvas.height * 1.5 // 1.5 times as wide as the height - can / should be changed
+        // -> Proportion for now : 
+        // 1 : 1,5 
+        // 2 : 3 (2 heiht - 3 width)
     }
 }
 
@@ -84,12 +97,15 @@ class component {
         this.y += this.speedY;
     }
     percentTOpixel() { // we want to write in percent to make it responsive, not in pixel
+        // for now the percent are relative to the width
+        // you can change it to the height by replacing "gameArea.canvas.width"
+        // by "gameArea.canvas.height" in line 1 (== 103) and 3 (== 105)
         this.width = (this.width/100) * gameArea.canvas.width /* width: percent to pixel */
         if (typeof this.height == "number") { // don't, if height is e.g. a font-family - string e.g. "Arial"
             this.height = (this.height/100) * gameArea.canvas.width /* height: percent to pixel */
         }
-        this.x = (this.x/100) * gameArea.canvas.width /* height: percent to pixel */
-        this.y = (this.y/100) * gameArea.canvas.height /* height: percent to pixel */
+        this.x = (this.x/100) * gameArea.canvas.width /* height: percent to pixel - location on the x axis */
+        this.y = (this.y/100) * gameArea.canvas.height /* height: percent to pixel - location on the y axis */
         this.speedY = (this.speedY/100) * gameArea.canvas.height /* height: vertical speed is the same on each display */
     }
 }
