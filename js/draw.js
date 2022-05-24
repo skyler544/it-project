@@ -18,14 +18,6 @@ var gameArea = {
         START.color = "white";
         START.percentTOpixel(); // x, y, width and height will be changed to pixel (relative to the size of the game)
         START.update(); // we need to update the game after each action (also update reguarly later) -> setIntervall */
-        let BLOCK = new component("rect", "blue");
-        BLOCK.x = 0;
-        BLOCK.y = 0;
-        BLOCK.width = 10;
-        BLOCK.height = 10;
-        // BLOCK.color = "blue"; -- optional
-        BLOCK.percentTOpixel();
-        BLOCK.update();
     },
     // please also check if in vertical mode - or force vertical mode ...
     resize : function () { // absolute size not important! -> only proportion
@@ -35,10 +27,14 @@ var gameArea = {
         // -> Proportion for now : 
         // 1 : 1,5 
         // 2 : 3 (2 heiht - 3 width)
+    }, 
+    clear : function() {
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    },
+    update : function () {
+        // maybe usefull for automatic movements, etc.
     }
 }
-
-$(document).ready(gameArea.load);
 
 class component {
     constructor(type, string) {
@@ -46,6 +42,7 @@ class component {
         this.width = 0;
         this.height = 0;
         // movement speed - how much x or should be augmented in one go
+        // only needed for automatic movement
         this.speedX = 0;
         this.speedY = 0;
         // position
@@ -91,6 +88,7 @@ class component {
             }
         }
     }
+    // used for automatic movement - in gameArea.update()
     newPos() {
         // change the position according to the speed
         this.x += this.speedX;

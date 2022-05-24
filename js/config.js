@@ -1,0 +1,1 @@
+const SQUARE_SIDE_LEN = 5 // in percent by percentTOpixel()
