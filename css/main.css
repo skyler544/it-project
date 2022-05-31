@@ -1,0 +1,11 @@
+body {
+    overflow: hidden;
+    scroll-behavior: unset;
+    text-align: center;
+}
+#game {
+    box-sizing: border-box;
+    background-color: gray;
+    height: 98vh;
+    overflow: hidden;
+}
