@@ -3,8 +3,10 @@ const assetMap = {
         characters: {
             player : {
                 src: "asset/mystic_woods/characters/player.png",
-                width: 48,
-                height: 48,
+                totalWidth: 288, // width of the whole png
+                totalHeight: 240, // height of the whole png
+                width: 48, // width of a single asset
+                height: 48, // height of a single asset
                 1 : { startX: 0, endX: 47, startY: 0, endY: 0 },
                 2 : { startX: 48, endX: 95, startY: 0, endY: 0 },
                 3 : { startX: 96, endX: 143, startY: 0, endY: 0 },
