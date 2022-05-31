@@ -1,10 +1,5 @@
 # Welcome to the jungle
 
-## Max Version
+A JavaScript pixelart RPG.
 
-## tes test 2 ssss 2
-
-## hehehehehehehe
-
-
-This repository is for our IT-Projektarbeit Module at Fachhochschule Technikum Wien.
+Credit: https://game-endeavor.itch.io/mystic-woods
