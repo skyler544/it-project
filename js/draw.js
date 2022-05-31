@@ -52,7 +52,9 @@ class component {
         this.value = string; // the content / value (text, src of img, ...)
         this.color = string; // the content / value as color
         this.type = type; // text, image, rect, ...
-        if(type == "image" || type == "background") {
+        if (type == "asset") {
+            this.image = string.img; // string is an asset() object
+        } else if(type == "image" || type == "background") {
             this.image = new Image(); // create a new image
             this.image.src = string;
         }
@@ -77,6 +79,32 @@ class component {
             this.update = function() {
                 let ctx = gameArea.context;
                 ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+            }
+        } else if (type == "asset") {
+            this.update = function() {
+                let ctx = gameArea.context;
+                /** ctx.drawImage(
+                 *      image,
+                 *      source x,
+                 *      source y,
+                 *      source width,
+                 *      source height,
+                 *      destination x,
+                 *      destination y,
+                 *      destination width,
+                 *      destination height
+                 * )
+                 * */
+                ctx.drawImage(
+                    this.image,
+                    string.css.startX,
+                    string.css.startY,
+                    string.css.width,
+                    string.css.height,
+                    this.x, this.y,
+                    this.width,
+                    this.height
+                );
             }
         } else if (type == "text") {
             this.update = function() {
