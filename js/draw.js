@@ -23,10 +23,13 @@ var gameArea = {
     resize : function () { // absolute size not important! -> only proportion
         // resizing only dependent from height - don't make it also dependent from the width, beacause then the proportion will be lost!!!
         gameArea.canvas.height = window.innerHeight * 3;  // * 3 for better resolution
-        gameArea.canvas.width = gameArea.canvas.height * 1.5 // 1.5 times as wide as the height - can / should be changed
+        gameArea.canvas.width = gameArea.canvas.height * 1.535 // 1.535 times as wide as the height - can / should be changed
         // -> Proportion for now : 
-        // 1 : 1,5 
-        // 2 : 3 (2 heiht - 3 width)
+        // 1 : 1,535
+        // 1000 : 1535
+        // 200 : 307
+        // 2 : 3,07 (2 heiht - 3,07 width)
+        // I made it so, that the squares fit nearly perfectly (I didn't want semi-squares)
     }, 
     clear : function() {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -128,10 +131,10 @@ class component {
         // by "gameArea.canvas.height" in line 1 (== 103) and 3 (== 105)
         this.width = (this.width/100) * gameArea.canvas.width /* width: percent to pixel */
         if (typeof this.height == "number") { // don't, if height is e.g. a font-family - string e.g. "Arial"
-            this.height = (this.height/100) * gameArea.canvas.width /* height: percent to pixel */
+            this.height = (this.height/100) * gameArea.canvas.width // height: percent to pixel
         }
         this.x = (this.x/100) * gameArea.canvas.width /* height: percent to pixel - location on the x axis */
-        this.y = (this.y/100) * gameArea.canvas.height /* height: percent to pixel - location on the y axis */
+        this.y = (this.y/100) * gameArea.canvas.width /* height: percent to pixel - location on the y axis */
         this.speedY = (this.speedY/100) * gameArea.canvas.height /* height: vertical speed is the same on each display */
     }
 }
