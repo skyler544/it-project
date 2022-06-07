@@ -4,9 +4,9 @@ function move(comp, x_move, y_move) {
     x_true_move = (x_move/100) * gameArea.canvas.width;
     y_true_move = (y_move/100) * gameArea.canvas.width;
     comp.x += x_true_move;
-    comp.y = y_true_move;
-    gameArea.clear();
-    comp.update();
+    comp.y += y_true_move;
+    // gameArea.clear();
+    // comp.update();
 }
 
 function moveSquare(comp, direction) {
