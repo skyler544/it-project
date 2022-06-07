@@ -7,19 +7,42 @@ document.addEventListener("DOMContentLoaded", function () {
   let spriteSheet = new Image();
   spriteSheet.src = spriteSheetPath;
 
+  let spriteW, spriteH, sheetW, sheetH;
+  let colCount = 6;
+  let rowCount = 5;
+
+  let setVars = function () {
+    sheetW = spriteSheet.width;
+    sheetH = spriteSheet.height;
+    spriteW = sheetW / colCount;
+    spriteH = sheetH / rowCount;
+    canvas.setAttribute('width', spriteSheet.width);
+    canvas.setAttribute('height', spriteSheet.height);
+  }
+
+
   spriteSheet.onload = function () {
-    let sw = spriteSheet.width / 6;
-    let sh = spriteSheet.height / 5;
+    setVars();
+    draw();
+  }
 
-    let j = 3;
-    let i = 2;
-
-    for (let i = 0; i < sw; i++) {
-      for (let j = 0; j < sh; j++) {
-        context.drawImage(spriteSheet, 0 + (sw * j), 0 + (sh * i), sw, sh,
-          0, 0, 128, 128)
-      }
+  let spritePosToImgPos = function (col, row) {
+    return {
+      x: (spriteW * col),
+      y: (spriteH * row)
     }
   }
 
+  let draw = function () {
+    for (let i = 0; i < colCount; i++) {
+      for (let j = 0; j < rowCount; j++) {
+        let pos = spritePosToImgPos(i, j);
+        context.drawImage(spriteSheet,
+          pos.x, pos.y,
+          spriteW, spriteH,
+          pos.x, pos.y,
+          spriteW, spriteH)
+      }
+    }
+  }
 });

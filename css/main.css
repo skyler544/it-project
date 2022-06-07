@@ -8,4 +8,10 @@ body {
     background-color: gray;
     height: 98vh;
     overflow: hidden;
+    image-rendering: pixelated;
+}
+
+#animTest {
+    background-color: #f8f8fe;
+    image-rendering: pixelated;
 }
