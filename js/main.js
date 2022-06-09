@@ -131,6 +131,132 @@ function main() {
     wall9.percentTOpixel();
     w.add(wall9);
 
+    let wall10_asset = new asset(wall_map, "einzelteil oben rechts light");
+    let wall10 = new component("asset", wall10_asset);
+    wall10.x = 7 * SQUARE_SIDE_LEN;
+    wall10.y = 4 * SQUARE_SIDE_LEN;
+    wall10.width = SQUARE_SIDE_LEN;
+    wall10.height = SQUARE_SIDE_LEN;
+    wall10.percentTOpixel();
+    w.add(wall10);
+
+    let wall11_asset = new asset(wall_map, "einzelteil oben links light");
+    let wall11 = new component("asset", wall11_asset);
+    wall11.x = 8 * SQUARE_SIDE_LEN;
+    wall11.y = 4 * SQUARE_SIDE_LEN;
+    wall11.width = SQUARE_SIDE_LEN;
+    wall11.height = SQUARE_SIDE_LEN;
+    wall11.percentTOpixel();
+    w.add(wall11);
+
+    let wall12_asset = new asset(wall_map, "start oben beide dark");
+    let wall12 = new component("asset", wall12_asset);
+    wall12.x = 3 * SQUARE_SIDE_LEN;
+    wall12.y = 5 * SQUARE_SIDE_LEN;
+    wall12.width = SQUARE_SIDE_LEN;
+    wall12.height = SQUARE_SIDE_LEN;
+    wall12.percentTOpixel();
+    w.add(wall12);
+
+    let wall13_asset = new asset(wall_map, "start oben links dark");
+    let wall13 = new component("asset", wall13_asset);
+    wall13.x = 4 * SQUARE_SIDE_LEN;
+    wall13.y = 5 * SQUARE_SIDE_LEN;
+    wall13.width = SQUARE_SIDE_LEN;
+    wall13.height = SQUARE_SIDE_LEN;
+    wall13.percentTOpixel();
+    w.add(wall13);
+
+    let wall14_asset = new asset(wall_map, "start oben dark");
+    let wall14 = new component("asset", wall14_asset);
+    wall14.x = 5 * SQUARE_SIDE_LEN;
+    wall14.y = 5 * SQUARE_SIDE_LEN;
+    wall14.width = SQUARE_SIDE_LEN;
+    wall14.height = SQUARE_SIDE_LEN;
+    wall14.percentTOpixel();
+    w.add(wall14);
+
+    let wall15_asset = new asset(wall_map, "start oben rechts dark");
+    let wall15 = new component("asset", wall15_asset);
+    wall15.x = 6 * SQUARE_SIDE_LEN;
+    wall15.y = 5 * SQUARE_SIDE_LEN;
+    wall15.width = SQUARE_SIDE_LEN;
+    wall15.height = SQUARE_SIDE_LEN;
+    wall15.percentTOpixel();
+    w.add(wall15);
+
+    let wall16_asset = new asset(wall_map, "einzelteil unten rechts dark");
+    let wall16 = new component("asset", wall16_asset);
+    wall16.x = 7 * SQUARE_SIDE_LEN;
+    wall16.y = 5 * SQUARE_SIDE_LEN;
+    wall16.width = SQUARE_SIDE_LEN;
+    wall16.height = SQUARE_SIDE_LEN;
+    wall16.percentTOpixel();
+    w.add(wall16);
+
+    let wall17_asset = new asset(wall_map, "einzelteil unten links dark");
+    let wall17 = new component("asset", wall17_asset);
+    wall17.x = 8 * SQUARE_SIDE_LEN;
+    wall17.y = 5 * SQUARE_SIDE_LEN;
+    wall17.width = SQUARE_SIDE_LEN;
+    wall17.height = SQUARE_SIDE_LEN;
+    wall17.percentTOpixel();
+    w.add(wall17);
+
+    let wall18_asset = new asset(wall_map, "start unten beide dark");
+    let wall18 = new component("asset", wall18_asset);
+    wall18.x = 3 * SQUARE_SIDE_LEN;
+    wall18.y = 6 * SQUARE_SIDE_LEN;
+    wall18.width = SQUARE_SIDE_LEN;
+    wall18.height = SQUARE_SIDE_LEN;
+    wall18.percentTOpixel();
+    w.add(wall18);
+
+    let wall19_asset = new asset(wall_map, "start unten links dark");
+    let wall19 = new component("asset", wall19_asset);
+    wall19.x = 4 * SQUARE_SIDE_LEN;
+    wall19.y = 6 * SQUARE_SIDE_LEN;
+    wall19.width = SQUARE_SIDE_LEN;
+    wall19.height = SQUARE_SIDE_LEN;
+    wall19.percentTOpixel();
+    w.add(wall19);
+
+    let wall20_asset = new asset(wall_map, "start unten dark");
+    let wall20 = new component("asset", wall20_asset);
+    wall20.x = 5 * SQUARE_SIDE_LEN;
+    wall20.y = 6 * SQUARE_SIDE_LEN;
+    wall20.width = SQUARE_SIDE_LEN;
+    wall20.height = SQUARE_SIDE_LEN;
+    wall20.percentTOpixel();
+    w.add(wall20);
+
+    let wall21_asset = new asset(wall_map, "start unten rechts dark");
+    let wall21 = new component("asset", wall21_asset);
+    wall21.x = 6 * SQUARE_SIDE_LEN;
+    wall21.y = 6 * SQUARE_SIDE_LEN;
+    wall21.width = SQUARE_SIDE_LEN;
+    wall21.height = SQUARE_SIDE_LEN;
+    wall21.percentTOpixel();
+    w.add(wall21);
+
+    let wall22_asset = new asset(wall_map, "umbug unten links dark");
+    let wall22 = new component("asset", wall22_asset);
+    wall22.x = 7 * SQUARE_SIDE_LEN;
+    wall22.y = 6 * SQUARE_SIDE_LEN;
+    wall22.width = SQUARE_SIDE_LEN;
+    wall22.height = SQUARE_SIDE_LEN;
+    wall22.percentTOpixel();
+    w.add(wall22);
+
+    let wall23_asset = new asset(wall_map, "umbug unten rechts dark");
+    let wall23 = new component("asset", wall23_asset);
+    wall23.x = 8 * SQUARE_SIDE_LEN;
+    wall23.y = 6 * SQUARE_SIDE_LEN;
+    wall23.width = SQUARE_SIDE_LEN;
+    wall23.height = SQUARE_SIDE_LEN;
+    wall23.percentTOpixel();
+    w.add(wall23);
+
     w.print(); // print the world
 
     window.addEventListener("keyup", function(ev) {
