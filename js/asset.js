@@ -71,6 +71,12 @@ const assetMap = {
             },
             walls : {
                 walls : {
+                    /**
+                     * For now I did everything manually, but I realised (a bit late though),
+                     * that all assets may be intended to be 16 x 16
+                     * -> it would fit well for the walls
+                     * -> this should be checked and (if you want to) changed
+                     */
                     src: "asset/mystic_woods/tilesets/walls/walls.png",
                     // !!! all manually !!!
                     num_rows: 4, // number of rows in the image
@@ -106,6 +112,28 @@ const assetMap = {
                     "start unten rechts dark" : { startX: 16*3, startY: (23+1)*3 },
                     "umbug unten links dark" : { startX: 16*4, startY: (23+1)*3},
                     "umbug unten rechts dark" : { startX: 16*5, startY: (23+1)*3},
+                },
+                wooden_door_b : {
+                    src: "asset/mystic_woods/tilesets/walls/wooden_door_b.png",
+                    num_rows: 1, // number of rows in the image
+                    num_col: 2, // number of colums in the image
+                    totalWidth: 32, // width of the whole png
+                    totalHeight: 16, // height of the whole png
+                    width: /* 32 / 2 */ 16, // width of a single asset
+                    height: /* 16 / 1 */ 16, // height of a single asset
+                    "closed" : { startX: 0, startY: 0, },
+                    "open" : { startX: 16, startY: 0, },
+                },
+                wooden_door : {
+                    src: "asset/mystic_woods/tilesets/walls/wooden_door.png",
+                    num_rows: 1, // number of rows in the image
+                    num_col: 2, // number of colums in the image
+                    totalWidth: 32, // width of the whole png
+                    totalHeight: 16, // height of the whole png
+                    width: /* 32 / 2 */ 16, // width of a single asset
+                    height: /* 16 / 1 */ 16, // height of a single asset
+                    "closed" : { startX: 0, startY: 0, },
+                    "open" : { startX: 16, startY: 0, },
                 }
             }
         }
