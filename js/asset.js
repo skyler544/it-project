@@ -1,10 +1,24 @@
+/**
+ * goal: make using assets easy
+ * how to use:
+ *  let map = assetMap.<your path>;
+ *  let as = new asset(map, <name of asset - can be a string or number>);
+ *  let comp = new component("asset", as);
+ * 
+ * map:
+ *  the map includes data on the image, and on the sprites of the image
+ *  e.g. assetMap.mystic_woods.characters.player
+ * asset:
+ *  the class asset creates a sprite / object, which the class component can use.
+ */
 const assetMap = {
     mystic_woods: {
         characters: {
             player : {
                 src: "asset/mystic_woods/characters/player.png",
-                num_rows: 5, // number of rows in the image
-                num_col: 6, // number of colums in the image
+                // !!! all manually !!!
+                num_rows: 5, // number of rows in the image // 15
+                num_col: 6, // number of colums in the image // 8
                 totalWidth: 288, // width of the whole png
                 totalHeight: 240, // height of the whole png
                 width: /* 288 / 6, */ 48-20, // width of a single asset
@@ -58,14 +72,20 @@ const assetMap = {
             },
             walls : {
                 walls : {
+                    /**
+                     * For now I did everything manually, but I realised (a bit late though),
+                     * that all assets may be intended to be 16 x 16
+                     * -> it would fit well for the walls
+                     * -> this should be checked and (if you want to) changed
+                     */
                     src: "asset/mystic_woods/tilesets/walls/walls.png",
-                    // all manually
+                    // !!! all manually !!!
                     num_rows: 4, // number of rows in the image
                     // num_col: 14, // number of colums in the image
                     totalWidth: 128, // width of the whole png
                     totalHeight: 128, // height of the whole png
                     width: /* 128 / 4 */ 16, // width of a single asset
-                    height: /* 128 / 4 */ 23, // height of a single asset
+                    height: /* 128 / 4 */ 23+1, // height of a single asset
                     "start oben light" : { startX: 0, startY: 0 },
                     "ecke oben links light" : { startX: 16, startY: 0 },
                     "little brick oben light" : { startX: 16*2, startY: 0 },
@@ -73,10 +93,48 @@ const assetMap = {
                     "umbug oben links light" : { startX: 16*4, startY: 0 },
                     "umbug oben rechts light" : { startX: 16*5, startY: 0 },
 
-                    "norm light" : { startX: 0, startY: 23 },
-                    "ecke unten links light" : { startX: 16, startY: 23 },
-                    "little brick unten light" : { startX: 16*2, startY: 23 },
-                    "ecke unten rechts light" : { startX: 16*3, startY: 23 },
+                    "norm light" : { startX: 0, startY: 23+1 },
+                    "ecke unten links light" : { startX: 16, startY: 23+1 },
+                    "little brick unten light" : { startX: 16*2, startY: 23+1 },
+                    "ecke unten rechts light" : { startX: 16*3, startY: 23+1 },
+                    "einzelteil oben rechts light" : { startX: 16*4, startY: 23+1 },
+                    "einzelteil oben links light" : { startX: 16*5, startY: 23+1 },
+
+                    "start oben beide dark" : { startX: 0, startY: (23+1)*2 },
+                    "start oben links dark" : { startX: 16, startY: (23+1)*2 },
+                    "start oben dark" : { startX: 16*2, startY: (23+1)*2 },
+                    "start oben rechts dark" : { startX: 16*3, startY: (23+1)*2 },
+                    "einzelteil unten rechts dark" : { startX: 16*4, startY: (23+1)*2 },
+                    "einzelteil unten links dark" : { startX: 16*5, startY: (23+1)*2 },
+
+                    "start unten beide dark" : { startX: 0, startY: (23+1)*3 },
+                    "start unten links dark" : { startX: 16, startY: (23+1)*3 },
+                    "start unten dark" : { startX: 16*2, startY: (23+1)*3 },
+                    "start unten rechts dark" : { startX: 16*3, startY: (23+1)*3 },
+                    "umbug unten links dark" : { startX: 16*4, startY: (23+1)*3},
+                    "umbug unten rechts dark" : { startX: 16*5, startY: (23+1)*3},
+                },
+                wooden_door_b : {
+                    src: "asset/mystic_woods/tilesets/walls/wooden_door_b.png",
+                    num_rows: 1, // number of rows in the image
+                    num_col: 2, // number of colums in the image
+                    totalWidth: 32, // width of the whole png
+                    totalHeight: 16, // height of the whole png
+                    width: /* 32 / 2 */ 16, // width of a single asset
+                    height: /* 16 / 1 */ 16, // height of a single asset
+                    "closed" : { startX: 0, startY: 0, },
+                    "open" : { startX: 16, startY: 0, },
+                },
+                wooden_door : {
+                    src: "asset/mystic_woods/tilesets/walls/wooden_door.png",
+                    num_rows: 1, // number of rows in the image
+                    num_col: 2, // number of colums in the image
+                    totalWidth: 32, // width of the whole png
+                    totalHeight: 16, // height of the whole png
+                    width: /* 32 / 2 */ 16, // width of a single asset
+                    height: /* 16 / 1 */ 16, // height of a single asset
+                    "closed" : { startX: 0, startY: 0, },
+                    "open" : { startX: 16, startY: 0, },
                 }
             }
         }

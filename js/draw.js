@@ -3,6 +3,8 @@
  */
 
 var gameArea = {
+    // context,
+    // canvas : { width, height },
     load : function () {
         // not especially needed, you execute it after the page is loaded -> e.g. $(document).ready(gameArea.load)
         gameArea.canvas = document.getElementById("game");
@@ -41,6 +43,8 @@ var gameArea = {
 
 class component {
     constructor(type, string) {
+        this.scaleX = 1;
+        this.scaleY = 1;
         // how big
         this.width = 0;
         this.height = 0;
@@ -51,12 +55,23 @@ class component {
         // position
         this.x = 0;
         this.y = 0;
+        // position in the image / source / asset
+        this.src_x = 0;
+        this.src_y = 0;
+        // width, height in the image / source / asset
+        this.src_width = 0;
+        this.src_height = 0;
+
         this.life = 0; // maybe somewhere else ?
         this.value = string; // the content / value (text, src of img, ...)
         this.color = string; // the content / value as color
         this.type = type; // text, image, rect, ...
         if (type == "asset") {
             this.image = string.img; // string is an asset() object
+            this.src_x = string.css.startX;
+            this.src_y = string.css.startY;
+            this.src_width = string.css.width;
+            this.src_height = string.css.height;
         } else if(type == "image" || type == "background") {
             this.image = new Image(); // create a new image
             this.image.src = string;
@@ -78,14 +93,14 @@ class component {
                 ctx.stroke(); // draw the line - we can remove that if we don't want a line / border
                 ctx.fill(); // apply fillStyle
             }
-        } else if (type == "image") {
+        } else if (type == "image" || type == "asset") {
             this.update = function() {
                 let ctx = gameArea.context;
-                ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
-            }
-        } else if (type == "asset") {
-            this.update = function() {
-                let ctx = gameArea.context;
+                // set height / width
+                this.width *= this.scaleX;
+                this.height *= this.scaleY;
+                ctx.save();
+                ctx.scale(this.scaleX, this.scaleY);
                 /** ctx.drawImage(
                  *      image,
                  *      source x,
@@ -100,6 +115,39 @@ class component {
                  * */
                 ctx.drawImage(
                     this.image,
+                    // source
+                    this.src_x,
+                    this.src_y,
+                    this.src_width,
+                    this.src_height,
+                    // destination
+                    this.x,
+                    this.y,
+                    this.width,
+                    this.height
+                );
+                // restore height / width
+                this.width *= this.scaleX;
+                this.height *= this.scaleY;
+                ctx.restore();
+            }
+        }/*  else if (type == "asset") {
+            this.update = function() {
+                let ctx = gameArea.context;
+                /**  ctx.drawImage(
+                 *      image,
+                 *      source x,
+                 *      source y,
+                 *      source width,
+                 *      source height,
+                 *      destination x,
+                 *      destination y,
+                 *      destination width,
+                 *      destination height
+                 * )
+                 * * /
+                ctx.drawImage(
+                    this.image,
                     string.css.startX,
                     string.css.startY,
                     string.css.width,
@@ -109,7 +157,7 @@ class component {
                     this.height
                 );
             }
-        } else if (type == "text") {
+        }*/ else if (type == "text") {
             this.update = function() {
                 let ctx = gameArea.context;
                 // width = font-size, height = font-family
@@ -136,5 +184,11 @@ class component {
         this.x = (this.x/100) * gameArea.canvas.width /* height: percent to pixel - location on the x axis */
         this.y = (this.y/100) * gameArea.canvas.width /* height: percent to pixel - location on the y axis */
         this.speedY = (this.speedY/100) * gameArea.canvas.height /* height: vertical speed is the same on each display */
+    }
+    reverseX() {
+        this.scaleX *= -1;
+    }
+    reverseY() {
+        this.scaleY *= -1;
     }
 }

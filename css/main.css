@@ -2,6 +2,8 @@ body {
     overflow: hidden;
     scroll-behavior: unset;
     text-align: center;
+    padding: 0;
+    margin: 0;
 }
 #game {
     box-sizing: border-box;
