@@ -16,8 +16,9 @@ const assetMap = {
         characters: {
             player : {
                 src: "asset/mystic_woods/characters/player.png",
-                num_rows: 5, // number of rows in the image
-                num_col: 6, // number of colums in the image
+                // !!! all manually !!!
+                num_rows: 5, // number of rows in the image // 15
+                num_col: 6, // number of colums in the image // 8
                 totalWidth: 288, // width of the whole png
                 totalHeight: 240, // height of the whole png
                 width: /* 288 / 6, */ 48-20, // width of a single asset

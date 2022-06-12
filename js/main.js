@@ -38,6 +38,7 @@ function main() {
     player1.width = SQUARE_SIDE_LEN;
     player1.height = SQUARE_SIDE_LEN;
     player1.percentTOpixel();
+    player1.reverseX();
     w.add(player1);
 
     let wall_map = assetMap.mystic_woods.tilesets.walls.walls;
