@@ -30,16 +30,6 @@ function main() {
             w.add(BLOCK); // add the block to the world
         }
     }
-    let player1_map = assetMap.mystic_woods.characters.player;
-    let player1_asset = new asset(player1_map, 14);
-    let player1 = new component("asset", player1_asset);
-    player1.x = 0;
-    player1.y = 0;
-    player1.width = SQUARE_SIDE_LEN;
-    player1.height = SQUARE_SIDE_LEN;
-    player1.percentTOpixel();
-    player1.reverseX();
-    w.add(player1);
 
     let wall_map = assetMap.mystic_woods.tilesets.walls.walls;
     let wall0_asset = new asset(wall_map, "start oben light");
@@ -258,9 +248,11 @@ function main() {
     wall23.percentTOpixel();
     w.add(wall23);
 
-    w.print(); // print the world
+    // w.print(); // print the world
 
-    window.addEventListener("keyup", function(ev) {
+    animatePlayer(w, 1);
+
+    /* window.addEventListener("keyup", function(ev) {
         if (ev.code == "ArrowRight") {
             moveSquare(player1, "right");
             w.print();
@@ -274,5 +266,5 @@ function main() {
             moveSquare(player1, "up");
             w.print();
         }
-    });
+    }); */
 }
