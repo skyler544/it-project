@@ -50,8 +50,8 @@ class component {
         this.height = 0;
         // movement speed - how much x or should be augmented in one go
         // only needed for automatic movement
-        this.speedX = 0;
-        this.speedY = 0;
+        // this.speedX = 0;
+        // this.speedY = 0;
         // position
         this.x = 0;
         this.y = 0;
@@ -62,7 +62,7 @@ class component {
         this.src_width = 0;
         this.src_height = 0;
 
-        this.life = 0; // maybe somewhere else ?
+        // this.life = 0; // maybe somewhere else ?
         this.value = string; // the content / value (text, src of img, ...)
         this.color = string; // the content / value as color
         this.type = type; // text, image, rect, ...
@@ -190,5 +190,12 @@ class component {
     }
     reverseY() {
         this.scaleY *= -1;
+    }
+    changeAsset(ass) {
+        this.image = ass.img; // ass is an asset() object
+        this.src_x = ass.css.startX;
+        this.src_y = ass.css.startY;
+        this.src_width = ass.css.width;
+        this.src_height = ass.css.height;
     }
 }
