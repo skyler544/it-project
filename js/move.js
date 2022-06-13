@@ -54,7 +54,9 @@ function animatePlayer(welt, speed) {
     }
 
     let getAsset = function () {
-        return new asset(sprite_map, (animFrame % sprite_map.num_col) + 1);
+        // which number the asset has
+        let num = ((animFrame % sprite_map.num_col) + 1) + sprite_map.num_col * isMoving
+        return new asset(sprite_map, num);
     }
 
     let animate = function () {
@@ -66,8 +68,8 @@ function animatePlayer(welt, speed) {
         movePlayer();
         sprite_asset = getAsset();
         sprite.changeAsset(sprite_asset);
-        // if (blick_richtung_rechts && leftPressed) { sprite.reverseX(); }
-        // else if (!blick_richtung_rechts && rightPressed) { sprite.reverseX(); }
+        if (blick_richtung_rechts && leftPressed) { sprite.reverseX(); blick_richtung_rechts = false; }
+        else if (!blick_richtung_rechts && rightPressed) { sprite.reverseX(); blick_richtung_rechts = true; }
         welt.print();
         animFrame++;
     }
@@ -76,16 +78,8 @@ function animatePlayer(welt, speed) {
   
     let keyDownHandler = function (e) {
         if (e.key == "d" || e.key == "Right" || e.key == "ArrowRight") {
-            if (!blick_richtung_rechts) {
-                blick_richtung_rechts = false;
-                sprite.reverseX();
-            }
             rightPressed = true;
         } else if (e.key == "a" || e.key == "Left" || e.key == "ArrowLeft") {
-            if (blick_richtung_rechts) {
-                blick_richtung_rechts = false;
-                sprite.reverseX();
-            }
             leftPressed = true;
         } else if (e.key == "w" || e.key == "Up" || e.key == "ArrowUp") {
             upPressed = true;
