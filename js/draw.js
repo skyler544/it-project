@@ -187,9 +187,11 @@ class component {
     }
     reverseX() {
         this.scaleX *= -1;
+        this.x *= -1;
     }
     reverseY() {
         this.scaleY *= -1;
+        this.y *= -1;
     }
     changeAsset(ass) {
         this.image = ass.img; // ass is an asset() object
