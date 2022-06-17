@@ -1,8 +1,8 @@
 
 // move by x , y in percent %
 function move(comp, x_move, y_move) {
-    x_true_move = (x_move/100) * gameArea.canvas.width;
-    y_true_move = (y_move/100) * gameArea.canvas.width;
+    x_true_move = (x_move / 100) * gameArea.canvas.width;
+    y_true_move = (y_move / 100) * gameArea.canvas.width;
     comp.x += x_true_move * comp.scaleX;
     comp.y += y_true_move * comp.scaleY;
     // gameArea.clear();
@@ -18,8 +18,8 @@ function moveSquare(comp, direction) {
 }
 
 /**
- * 
- * @param {world} welt 
+ *
+ * @param {world} welt
  * @param {number} speed in percent (percentTOpixel)
  */
 function animatePlayer(welt, speed) {
@@ -44,11 +44,11 @@ function animatePlayer(welt, speed) {
     let movePlayer = function () {
         if (rightPressed) {
             move(sprite, speed, 0);
-        } else if (leftPressed) {
+        } if (leftPressed) {
             move(sprite, -speed, 0);
-        } else if (upPressed) {
+        } if (upPressed) {
             move(sprite, 0, -speed);
-        } else if (downPressed) {
+        } if (downPressed) {
             move(sprite, 0, speed);
         }
     }
@@ -75,7 +75,7 @@ function animatePlayer(welt, speed) {
     }
 
     setInterval(animate, 60);
-  
+
     let keyDownHandler = function (e) {
         if (e.key == "d" || e.key == "Right" || e.key == "ArrowRight") {
             rightPressed = true;
@@ -87,7 +87,7 @@ function animatePlayer(welt, speed) {
             downPressed = true;
         }
     }
-  
+
     let keyUpHandler = function (e) {
         if (e.key == "d" || e.key == "Right" || e.key == "ArrowRight") {
             rightPressed = false;
@@ -99,8 +99,7 @@ function animatePlayer(welt, speed) {
             downPressed = false;
         }
     }
-  
+
     document.addEventListener("keydown", keyDownHandler, false);
     document.addEventListener("keyup", keyUpHandler, false);
 }
-  
