@@ -183,7 +183,8 @@ class component {
         }
         this.x = (this.x/100) * gameArea.canvas.width /* height: percent to pixel - location on the x axis */
         this.y = (this.y/100) * gameArea.canvas.width /* height: percent to pixel - location on the y axis */
-        this.speedY = (this.speedY/100) * gameArea.canvas.height /* height: vertical speed is the same on each display */
+        // this.speedY = (this.speedY/100) * gameArea.canvas.height /* height: vertical speed is the same on each display */
+        this.speed = (this.speed/100) * gameArea.canvas.height /* height: vertical speed is the same on each display */
     }
     reverseX() {
         this.scaleX *= -1;
