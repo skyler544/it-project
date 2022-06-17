@@ -2,6 +2,7 @@ $(document).ready(gameArea.load);
 $(document).ready(main);
 
 function main() {
+    assetMap.init();
     w = new world;
 
     // print 20 lines of blocks == full table

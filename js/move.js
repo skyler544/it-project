@@ -1,12 +1,11 @@
 
 // move by x , y in percent %
 function move(comp, x_move, y_move) {
+    // transform percent to pixel
     x_true_move = (x_move/100) * gameArea.canvas.width;
     y_true_move = (y_move/100) * gameArea.canvas.width;
-    comp.x += x_true_move * comp.scaleX;
-    comp.y += y_true_move * comp.scaleY;
-    // gameArea.clear();
-    // comp.update();
+    comp.x += x_true_move;
+    comp.y += y_true_move;
 }
 
 function moveSquare(comp, direction) {
