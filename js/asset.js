@@ -11,7 +11,66 @@
  * asset:
  *  the class asset creates a sprite / object, which the class component can use.
  */
+
+class assetSprite {
+    /**
+     * 
+     * @param {number} x // x coordinate on the image
+     * @param {number} y // y coordinate on the image
+     * @param {number} width // width of the sprite
+     * @param {number} height // height of the sprite
+     */
+    constructor(x, y, width, height) {
+        this.startX = x;
+        this.startY = y;
+        this.endX = x + width;
+        this.endY = y + height;
+    }
+}
+
+class assetMapPart {
+    /**
+     * 
+     * @param {string} src // path to the image
+     * @param {number} num_col // number of colums
+     * @param {number} num_rows // number of rows
+     * @param {number} totalWidth // width of the entire image
+     * @param {number} totalHeight // height of the entire image
+     */
+    constructor(src, num_col, num_rows, totalWidth, totalHeight) {
+        // this.assets = {};
+        this.src = src;
+        this.num_col = num_col;
+        this.num_rows = num_rows;
+        this.totalWidth = totalWidth;
+        this.totalHeight = totalHeight;
+
+        this.width = totalWidth / num_col;
+        this.height = totalHeight / num_rows;
+    }
+    /**
+     * 
+     * @param {string | number} name 
+     * @param {number} col
+     * @param {number} row
+     */
+    add(name, col, row) {
+        let x = this.width * (col - 1);
+        let y = this.height * (row - 1);
+        // this.assets[name] = new assetSprite(x, y, this.width, this.height);
+        this[name] = new assetSprite(x, y, this.width, this.height);
+    }
+}
+
 const assetMap = {
+    init : function() {
+        this.mystic_woods.tilesets.floors.wooden.add("wooden", 1, 1);
+        this.mystic_woods.tilesets.floors.grass.add("grass", 1, 1);
+        this.mystic_woods.tilesets.walls.wooden_door_b.add("closed", 1, 1);
+        this.mystic_woods.tilesets.walls.wooden_door_b.add("open", 2, 1);
+        this.mystic_woods.tilesets.walls.wooden_door.add("closed", 1, 1);
+        this.mystic_woods.tilesets.walls.wooden_door.add("open", 2, 1);
+    },
     mystic_woods: {
         characters: {
             player : {
@@ -49,26 +108,8 @@ const assetMap = {
         },
         tilesets : {
             floors : {
-                wooden : {
-                    src: "asset/mystic_woods/tilesets/floors/wooden.png",
-                    num_rows: 1, // number of rows in the image
-                    num_col: 1, // number of colums in the image
-                    totalWidth: 16, // width of the whole png
-                    totalHeight: 16, // height of the whole png
-                    width: /* 288 / 6, */ 16, // width of a single asset
-                    height: /* 240 / 5, */ 16, // height of a single asset
-                    "wooden" : { startX: 0, startY: 0 }
-                },
-                grass : {
-                    src: "asset/mystic_woods/tilesets/floors/grass.png",
-                    num_rows: 1, // number of rows in the image
-                    num_col: 1, // number of colums in the image
-                    totalWidth: 16, // width of the whole png
-                    totalHeight: 16, // height of the whole png
-                    width: 16, // width of a single asset
-                    height: 16, // height of a single asset
-                    "grass" : { startX: 0, startY: 0 }
-                }
+                wooden : new assetMapPart("asset/mystic_woods/tilesets/floors/wooden.png", 1, 1, 16, 16),
+                grass : new assetMapPart("asset/mystic_woods/tilesets/floors/grass.png", 1, 1, 16, 16),
             },
             walls : {
                 walls : {
@@ -81,7 +122,7 @@ const assetMap = {
                     src: "asset/mystic_woods/tilesets/walls/walls.png",
                     // !!! all manually !!!
                     num_rows: 4, // number of rows in the image
-                    // num_col: 14, // number of colums in the image
+                    num_col: 8, // number of colums in the image
                     totalWidth: 128, // width of the whole png
                     totalHeight: 128, // height of the whole png
                     width: /* 128 / 4 */ 16, // width of a single asset
@@ -114,44 +155,25 @@ const assetMap = {
                     "umbug unten links dark" : { startX: 16*4, startY: (23+1)*3},
                     "umbug unten rechts dark" : { startX: 16*5, startY: (23+1)*3},
                 },
-                wooden_door_b : {
-                    src: "asset/mystic_woods/tilesets/walls/wooden_door_b.png",
-                    num_rows: 1, // number of rows in the image
-                    num_col: 2, // number of colums in the image
-                    totalWidth: 32, // width of the whole png
-                    totalHeight: 16, // height of the whole png
-                    width: /* 32 / 2 */ 16, // width of a single asset
-                    height: /* 16 / 1 */ 16, // height of a single asset
-                    "closed" : { startX: 0, startY: 0, },
-                    "open" : { startX: 16, startY: 0, },
-                },
-                wooden_door : {
-                    src: "asset/mystic_woods/tilesets/walls/wooden_door.png",
-                    num_rows: 1, // number of rows in the image
-                    num_col: 2, // number of colums in the image
-                    totalWidth: 32, // width of the whole png
-                    totalHeight: 16, // height of the whole png
-                    width: /* 32 / 2 */ 16, // width of a single asset
-                    height: /* 16 / 1 */ 16, // height of a single asset
-                    "closed" : { startX: 0, startY: 0, },
-                    "open" : { startX: 16, startY: 0, },
-                }
+                wooden_door_b : new assetMapPart("asset/mystic_woods/tilesets/walls/wooden_door_b.png", 2, 1, 32, 16),
+                wooden_door : new assetMapPart("asset/mystic_woods/tilesets/walls/wooden_door.png", 2, 1, 32, 16),
             }
         }
     }
 }
 
 class asset {
-    constructor(map, css) {
+    /**
+     * 
+     * @param {assetMapPart} map // the map for the image
+     * @param {string | number} name // the name of the assetSprite
+     */
+    constructor(map, name) {
         this.img = new Image();
         this.img.src = map.src;
-        // this.img.style.background = "url(" + src + ") " + css.start + " " + css.end;
-        // this.img.style.backgroundPosition = css.start + " " + css.end;
 
-        // this.img.setAttribute("style", "background: url(" + src + ") " + 0 + " " + 0 + " ; width: 48px; height: 48px")
-        this.css = map[css];
+        this.css = map[name];
         this.css.height = map.height;
         this.css.width = map.width;
-        // console.log(this);
     }
 }

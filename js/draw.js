@@ -10,16 +10,6 @@ var gameArea = {
         gameArea.canvas = document.getElementById("game");
         gameArea.context = gameArea.canvas.getContext("2d");
         gameArea.resize();
-
-        // just some intro, test or whatever you like ...
-        /* let START = new component("text", "Click to Start");
-        START.y = 45;
-        START.width = 10; // width = font-size, height = font-family
-        START.height = "Arial"; // width = font-size, height = font-family
-        START.x = 20;
-        START.color = "white";
-        START.percentTOpixel(); // x, y, width and height will be changed to pixel (relative to the size of the game)
-        START.update(); // we need to update the game after each action (also update reguarly later) -> setIntervall */
     },
     // please also check if in vertical mode - or force vertical mode ...
     resize : function () { // absolute size not important! -> only proportion
@@ -48,10 +38,6 @@ class component {
         // how big
         this.width = 0;
         this.height = 0;
-        // movement speed - how much x or should be augmented in one go
-        // only needed for automatic movement
-        // this.speedX = 0;
-        // this.speedY = 0;
         // position
         this.x = 0;
         this.y = 0;
@@ -62,7 +48,6 @@ class component {
         this.src_width = 0;
         this.src_height = 0;
 
-        // this.life = 0; // maybe somewhere else ?
         this.value = string; // the content / value (text, src of img, ...)
         this.color = string; // the content / value as color
         this.type = type; // text, image, rect, ...
@@ -97,6 +82,8 @@ class component {
             this.update = function() {
                 let ctx = gameArea.context;
                 // set height / width
+                this.x *= this.scaleX;
+                this.y *= this.scaleY;
                 this.width *= this.scaleX;
                 this.height *= this.scaleY;
                 ctx.save();
@@ -127,8 +114,10 @@ class component {
                     this.height
                 );
                 // restore height / width
-                this.width *= this.scaleX;
-                this.height *= this.scaleY;
+                this.x /= this.scaleX;
+                this.y /= this.scaleY;
+                this.width /= this.scaleX;
+                this.height /= this.scaleY;
                 ctx.restore();
             }
         }/*  else if (type == "asset") {
@@ -188,11 +177,11 @@ class component {
     }
     reverseX() {
         this.scaleX *= -1;
-        this.x *= -1;
+        // this.x *= -1;
     }
     reverseY() {
         this.scaleY *= -1;
-        this.y *= -1;
+        // this.y *= -1;
     }
     changeAsset(ass) {
         this.image = ass.img; // ass is an asset() object
