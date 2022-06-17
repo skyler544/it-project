@@ -1,6 +1,6 @@
 
 document.addEventListener("DOMContentLoaded", function () {
-  let canvas = document.getElementById("animTest");
+  let canvas = document.getElementById("game");
   let context = canvas.getContext("2d");
   canvas.setAttribute('width', 600);
   canvas.setAttribute('height', 600);
