@@ -32,22 +32,12 @@ class component {
         // position
         this.x = 0;
         this.y = 0;
-        // position in the image / source / asset
-        this.src_x = 0;
-        this.src_y = 0;
-        // width, height in the image / source / asset
-        this.src_width = 0;
-        this.src_height = 0;
 
         this.value = string; // the content / value (text, src of img, ...)
         this.color = string; // the content / value as color
         this.type = type; // text, image, rect, ...
         if (type == "asset") {
             this.image = string.img; // string is an asset() object
-            this.src_x = string.css.startX;
-            this.src_y = string.css.startY;
-            this.src_width = string.css.width;
-            this.src_height = string.css.height;
         } else if(type == "image" || type == "background") {
             this.image = new Image(); // create a new image
             this.image.src = string;
@@ -94,10 +84,14 @@ class component {
                 ctx.drawImage(
                     this.image,
                     // source
-                    this.src_x,
+                    /* this.src_x,
                     this.src_y,
                     this.src_width,
-                    this.src_height,
+                    this.src_height, */
+                    this.value.css.startX,
+                    this.value.css.startY,
+                    this.value.css.width,
+                    this.value.css.height,
                     // destination
                     this.x,
                     this.y,
@@ -140,9 +134,6 @@ class component {
     }
     changeAsset(ass) {
         this.image = ass.img; // ass is an asset() object
-        this.src_x = ass.css.startX;
-        this.src_y = ass.css.startY;
-        this.src_width = ass.css.width;
-        this.src_height = ass.css.height;
+        this.value = ass;
     }
 }
