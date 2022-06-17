@@ -84,10 +84,6 @@ class component {
                 ctx.drawImage(
                     this.image,
                     // source
-                    /* this.src_x,
-                    this.src_y,
-                    this.src_width,
-                    this.src_height, */
                     this.value.css.startX,
                     this.value.css.startY,
                     this.value.css.width,
