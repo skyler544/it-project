@@ -1,8 +1,7 @@
 
 
-class event {
+class MyEvent {
     constructor() {
-        this.events = [];
         this.rightPressed = false;
         this.leftPressed = false;
         this.upPressed = false;
@@ -31,14 +30,11 @@ class event {
         }
     }
     start() {
-        this.events.push(document.addEventListener("keydown", this.keyDownHandler, false));
-        this.events.push(document.addEventListener("keyup", this.keyUpHandler, false));
+        document.addEventListener("keydown", this.keyDownHandler.bind(this), false);
+        document.addEventListener("keyup", this.keyUpHandler.bind(this), false);
     }
     end() {
-        // for (i in this.events) {
-            // if (i == "item") { break; }
-            document.removeEventListener("keydown", this.keyDownHandler, false);
-            document.removeEventListener("keyup", this.keyUpHandler, false);
-        // }
+        document.removeEventListener("keydown", this.keyDownHandler.bind(this), false);
+        document.removeEventListener("keyup", this.keyUpHandler, false);
     }
 }

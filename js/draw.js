@@ -15,19 +15,10 @@ var gameArea = {
     resize : function () { // absolute size not important! -> only proportion
         // resizing only dependent from height - don't make it also dependent from the width, beacause then the proportion will be lost!!!
         gameArea.canvas.height = window.innerHeight * 3;  // * 3 for better resolution
-        gameArea.canvas.width = gameArea.canvas.height // 1.535 times as wide as the height - can / should be changed
-        // -> Proportion for now : 
-        // 1 : 1,535
-        // 1000 : 1535
-        // 200 : 307
-        // 2 : 3,07 (2 heiht - 3,07 width)
-        // I made it so, that the squares fit nearly perfectly (I didn't want semi-squares)
+        gameArea.canvas.width = gameArea.canvas.height * 1.535 // 1.535 times as wide as the height - can / should be changed
     }, 
     clear : function() {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    },
-    update : function () {
-        // maybe usefull for automatic movements, etc.
     }
 }
 
@@ -120,33 +111,7 @@ class component {
                 this.height /= this.scaleY;
                 ctx.restore();
             }
-        }/*  else if (type == "asset") {
-            this.update = function() {
-                let ctx = gameArea.context;
-                /**  ctx.drawImage(
-                 *      image,
-                 *      source x,
-                 *      source y,
-                 *      source width,
-                 *      source height,
-                 *      destination x,
-                 *      destination y,
-                 *      destination width,
-                 *      destination height
-                 * )
-                 * * /
-                ctx.drawImage(
-                    this.image,
-                    string.css.startX,
-                    string.css.startY,
-                    string.css.width,
-                    string.css.height,
-                    this.x, this.y,
-                    this.width,
-                    this.height
-                );
-            }
-        }*/ else if (type == "text") {
+        } else if (type == "text") {
             this.update = function() {
                 let ctx = gameArea.context;
                 // width = font-size, height = font-family
@@ -156,32 +121,22 @@ class component {
             }
         }
     }
-    // used for automatic movement - in gameArea.update()
-    newPos() {
-        // change the position according to the speed
-        this.x += this.speedX;
-        this.y += this.speedY;
-    }
     percentTOpixel() { // we want to write in percent to make it responsive, not in pixel
         // for now the percent are relative to the width
         // you can change it to the height by replacing "gameArea.canvas.width"
-        // by "gameArea.canvas.height" in line 1 (== 103) and 3 (== 105)
+        // by "gameArea.canvas.height" in line 1 (== 169), 3 (== 171), 5 (== 173) and 6 (174)
         this.width = (this.width/100) * gameArea.canvas.width /* width: percent to pixel */
         if (typeof this.height == "number") { // don't, if height is e.g. a font-family - string e.g. "Arial"
             this.height = (this.height/100) * gameArea.canvas.width // height: percent to pixel
         }
         this.x = (this.x/100) * gameArea.canvas.width /* height: percent to pixel - location on the x axis */
         this.y = (this.y/100) * gameArea.canvas.width /* height: percent to pixel - location on the y axis */
-        // this.speedY = (this.speedY/100) * gameArea.canvas.height /* height: vertical speed is the same on each display */
-        this.speed = (this.speed/100) * gameArea.canvas.height /* height: vertical speed is the same on each display */
     }
     reverseX() {
         this.scaleX *= -1;
-        // this.x *= -1;
     }
     reverseY() {
         this.scaleY *= -1;
-        // this.y *= -1;
     }
     changeAsset(ass) {
         this.image = ass.img; // ass is an asset() object
