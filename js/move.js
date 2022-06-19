@@ -15,6 +15,29 @@ function moveSquare(comp, direction) {
     else if (direction == "down") { move(comp, 0, SQUARE_SIDE_LEN); }
 }
 
+
+class KeyHandler {
+    w = 87;
+    a = 65;
+    s = 83;
+    d = 68;
+    left = 37;
+    up = 38;
+    right = 39;
+    down = 40;
+    keysDown = {};
+    constructor() {
+        document.addEventListener("keydown", this.keyDownHandler.bind(this), false);
+        document.addEventListener("keyup", this.keyUpHandler.bind(this), false);
+    }
+    keyDownHandler(e) {
+        this.keysDown[e.keyCode] = true;
+    }
+    keyUpHandler(e) {
+        delete this.keysDown[e.keyCode];
+    }
+}
+
 /**
  *
  * @param {world} welt
@@ -33,32 +56,29 @@ function animatePlayer(welt, speed) {
 
     let animFrame = 1;
     let isMoving = 0;
-    let rightPressed = false;
-    let leftPressed = false;
-    let upPressed = false;
-    let downPressed = false;
+    let kh = new KeyHandler();
     let blick_richtung_rechts = true;
 
     let movePlayer = function () {
-        if (rightPressed) {
+        if (kh.d in kh.keysDown || kh.right in kh.keysDown) {
             move(sprite, speed, 0);
-        } if (leftPressed) {
+        } if (kh.a in kh.keysDown || kh.left in kh.keysDown) {
             move(sprite, -speed, 0);
-        } if (upPressed) {
+        } if (kh.w in kh.keysDown || kh.up in kh.keysDown) {
             move(sprite, 0, -speed);
-        } if (downPressed) {
+        } if (kh.s in kh.keysDown || kh.down in kh.keysDown) {
             move(sprite, 0, speed);
         }
     }
 
     let getAsset = function () {
         // which number the asset has
-        let num = ((animFrame % sprite_map.num_col) + 1) + sprite_map.num_col * isMoving
+        let num = ((animFrame % sprite_map.num_col) + 1) + sprite_map.num_col * isMoving;
         return new asset(sprite_map, num);
     }
 
     let animate = function () {
-        if (upPressed || downPressed || rightPressed || leftPressed) {
+        if (Object.keys(kh.keysDown).length !== 0) {
             isMoving = 1;
         } else {
             isMoving = 0;
@@ -66,38 +86,16 @@ function animatePlayer(welt, speed) {
         movePlayer();
         sprite_asset = getAsset();
         sprite.changeAsset(sprite_asset);
-        if (blick_richtung_rechts && leftPressed) { sprite.reverseX(); blick_richtung_rechts = false; }
-        else if (!blick_richtung_rechts && rightPressed) { sprite.reverseX(); blick_richtung_rechts = true; }
+        if (blick_richtung_rechts && (kh.a in kh.keysDown || kh.left in kh.keysDown)) {
+            sprite.reverseX();
+            blick_richtung_rechts = false;
+        } else if (!blick_richtung_rechts && (kh.d in kh.keysDown || kh.right in kh.keysDown)) {
+            sprite.reverseX();
+            blick_richtung_rechts = true;
+        }
         welt.print();
         animFrame++;
     }
 
     setInterval(animate, 60);
-
-    let keyDownHandler = function (e) {
-        if (e.key == "d" || e.key == "Right" || e.key == "ArrowRight") {
-            rightPressed = true;
-        } else if (e.key == "a" || e.key == "Left" || e.key == "ArrowLeft") {
-            leftPressed = true;
-        } else if (e.key == "w" || e.key == "Up" || e.key == "ArrowUp") {
-            upPressed = true;
-        } else if (e.key == "s" || e.key == "Down" || e.key == "ArrowDown") {
-            downPressed = true;
-        }
-    }
-
-    let keyUpHandler = function (e) {
-        if (e.key == "d" || e.key == "Right" || e.key == "ArrowRight") {
-            rightPressed = false;
-        } else if (e.key == "a" || e.key == "Left" || e.key == "ArrowLeft") {
-            leftPressed = false;
-        } else if (e.key == "w" || e.key == "Up" || e.key == "ArrowUp") {
-            upPressed = false;
-        } else if (e.key == "s" || e.key == "Down" || e.key == "ArrowDown") {
-            downPressed = false;
-        }
-    }
-
-    document.addEventListener("keydown", keyDownHandler, false);
-    document.addEventListener("keyup", keyUpHandler, false);
 }
