@@ -66,8 +66,13 @@ function animatePlayer(welt, speed) {
         movePlayer();
         sprite_asset = getAsset();
         sprite.changeAsset(sprite_asset);
-        if (blick_richtung_rechts && leftPressed) { sprite.reverseX(); blick_richtung_rechts = false; }
-        else if (!blick_richtung_rechts && rightPressed) { sprite.reverseX(); blick_richtung_rechts = true; }
+        if (blick_richtung_rechts && leftPressed) {
+            sprite.reverseX();
+            blick_richtung_rechts = false;
+        } else if (!blick_richtung_rechts && rightPressed) {
+            sprite.reverseX();
+            blick_richtung_rechts = true;
+        }
         welt.print();
         animFrame++;
     }

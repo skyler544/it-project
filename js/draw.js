@@ -5,28 +5,28 @@
 var gameArea = {
     // context,
     // canvas : { width, height },
-    load : function () {
+    load: function () {
         // not especially needed, you execute it after the page is loaded -> e.g. $(document).ready(gameArea.load)
         gameArea.canvas = document.getElementById("game");
         gameArea.context = gameArea.canvas.getContext("2d");
         gameArea.resize();
     },
     // please also check if in vertical mode - or force vertical mode ...
-    resize : function () { // absolute size not important! -> only proportion
+    resize: function () { // absolute size not important! -> only proportion
         // resizing only dependent from height - don't make it also dependent from the width, beacause then the proportion will be lost!!!
         gameArea.canvas.height = window.innerHeight * 3;  // * 3 for better resolution
-        gameArea.canvas.width = gameArea.canvas.height // 1.535 times as wide as the height - can / should be changed
+        gameArea.canvas.width = gameArea.canvas.height * 1.535 // 1.535 times as wide as the height - can / should be changed
         // -> Proportion for now : 
         // 1 : 1,535
         // 1000 : 1535
         // 200 : 307
         // 2 : 3,07 (2 heiht - 3,07 width)
         // I made it so, that the squares fit nearly perfectly (I didn't want semi-squares)
-    }, 
-    clear : function() {
+    },
+    clear: function () {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     },
-    update : function () {
+    update: function () {
         // maybe usefull for automatic movements, etc.
     }
 }
@@ -57,20 +57,20 @@ class component {
             this.src_y = string.css.startY;
             this.src_width = string.css.width;
             this.src_height = string.css.height;
-        } else if(type == "image" || type == "background") {
+        } else if (type == "image" || type == "background") {
             this.image = new Image(); // create a new image
             this.image.src = string;
         }
-        
+
         // this.update() draws the thing on the game, that is why each type of thing must have its own "this.update" function
         if (type == "rect") { // let's draw a rectangle
-            this.update = function() {
+            this.update = function () {
                 let ctx = gameArea.context;
                 ctx.fillStyle = this.color;
                 ctx.fillRect(this.x, this.y, this.width, this.height);
             }
         } else if (type == "circle") { // let's draw a circle
-            this.update = function() {
+            this.update = function () {
                 let ctx = gameArea.context;
                 ctx.fillStyle = this.color; // set fillStyle
                 ctx.beginPath(); // ok, here we start
@@ -79,7 +79,7 @@ class component {
                 ctx.fill(); // apply fillStyle
             }
         } else if (type == "image" || type == "asset") {
-            this.update = function() {
+            this.update = function () {
                 let ctx = gameArea.context;
                 // set height / width
                 this.x *= this.scaleX;
@@ -147,7 +147,7 @@ class component {
                 );
             }
         }*/ else if (type == "text") {
-            this.update = function() {
+            this.update = function () {
                 let ctx = gameArea.context;
                 // width = font-size, height = font-family
                 ctx.font = this.width + "px " + this.height;
@@ -166,14 +166,14 @@ class component {
         // for now the percent are relative to the width
         // you can change it to the height by replacing "gameArea.canvas.width"
         // by "gameArea.canvas.height" in line 1 (== 103) and 3 (== 105)
-        this.width = (this.width/100) * gameArea.canvas.width /* width: percent to pixel */
+        this.width = (this.width / 100) * gameArea.canvas.width /* width: percent to pixel */
         if (typeof this.height == "number") { // don't, if height is e.g. a font-family - string e.g. "Arial"
-            this.height = (this.height/100) * gameArea.canvas.width // height: percent to pixel
+            this.height = (this.height / 100) * gameArea.canvas.width // height: percent to pixel
         }
-        this.x = (this.x/100) * gameArea.canvas.width /* height: percent to pixel - location on the x axis */
-        this.y = (this.y/100) * gameArea.canvas.width /* height: percent to pixel - location on the y axis */
+        this.x = (this.x / 100) * gameArea.canvas.width /* height: percent to pixel - location on the x axis */
+        this.y = (this.y / 100) * gameArea.canvas.width /* height: percent to pixel - location on the y axis */
         // this.speedY = (this.speedY/100) * gameArea.canvas.height /* height: vertical speed is the same on each display */
-        this.speed = (this.speed/100) * gameArea.canvas.height /* height: vertical speed is the same on each display */
+        this.speed = (this.speed / 100) * gameArea.canvas.height /* height: vertical speed is the same on each display */
     }
     reverseX() {
         this.scaleX *= -1;

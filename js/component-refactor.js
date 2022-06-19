@@ -3,11 +3,15 @@ document.addEventListener("DOMContentLoaded", function () {
     load: function () {
       gameArea.canvas = document.getElementById("game");
       gameArea.context = gameArea.canvas.getContext("2d");
-      gameArea.resize();
+      // gameArea.resize();
     },
     resize: function () {
       gameArea.canvas.height = window.innerHeight * 3;
-      gameArea.canvas.width = gameArea.canvas.height
+      gameArea.canvas.width = gameArea.canvas.height;
+    },
+    setSize: function (height, width) {
+      gameArea.canvas.height = height;
+      gameArea.canvas.width = width;
     },
     clear: function () {
       this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -21,6 +25,8 @@ document.addEventListener("DOMContentLoaded", function () {
       this.height = height;
       this.x = x;
       this.y = y;
+      this.scaleX = scale;
+      this.scaleY = scale;
     }
     scaleComponent(scale) {
       this.scaleX = scale;
@@ -32,22 +38,6 @@ document.addEventListener("DOMContentLoaded", function () {
       this.width *= this.scaleX;
       this.height *= this.scaleY;
       gameArea.context.scale(this.scaleX, this.scaleY);
-    }
-  }
-
-  class TextComponent extends Component {
-    constructor(text, style, size, family, color, x, y) {
-      super(1, 0, 0, x, y);
-      this.text = text;
-      this.style = style;
-      this.size = size;
-      this.family = family
-      this.color = color;
-    }
-    update() {
-      gameArea.context.font = this.style + " " + this.size + "px " + this.family;
-      gameArea.context.fillStyle = this.color;
-      gameArea.context.fillText(this.text, this.x, this.y);
     }
   }
 
@@ -72,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
           this.x, this.y,
           this.width, this.height,
           this.x, this.y,
-          this.width * 3, this.height * 3
+          this.width, this.height
         );
         this.x /= this.scaleX;
         this.y /= this.scaleY;
@@ -83,16 +73,35 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  gameArea.load();
-  let testImg = new ImageComponent(2, 0, 0, "asset/mystic_woods/objects/objects.png");
-  setInterval(testImg.update.bind(testImg), 10);
+  let init = function () {
+    gameArea.load();
+    gameArea.setSize(300, 300);
+    let testImg = new ImageComponent(2, 0, 0, "asset/mystic_woods/objects/objects.png");
+    setInterval(testImg.update.bind(testImg), 10);
+  }
 
-
-
+  init();
   // let hey = new TextComponent("hey", "bold", 48, "sans-serif", "blue", 100, 50);
   // hey.scaleComponent(-2);
   // hey.update();
 
   // console.log(hey);
   // console.log(window.innerHeight);
+
+
+  // class TextComponent extends Component {
+  //   constructor(text, style, size, family, color, x, y) {
+  //     super(1, 0, 0, x, y);
+  //     this.text = text;
+  //     this.style = style;
+  //     this.size = size;
+  //     this.family = family
+  //     this.color = color;
+  //   }
+  //   update() {
+  //     gameArea.context.font = this.style + " " + this.size + "px " + this.family;
+  //     gameArea.context.fillStyle = this.color;
+  //     gameArea.context.fillText(this.text, this.x, this.y);
+  //   }
+  // }
 });
