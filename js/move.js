@@ -72,3 +72,27 @@ function animatePlayer(welt, speed) {
 
     setInterval(animate, 60);
 }
+
+/**
+ * @brief Animate an asset-component using an array of sprites / assets. Does not print it !!!
+ * @param { world } welt // the world
+ * @param { component } sprite // the component
+ * @param { asset[] } sprites // which assets - name
+ */
+function animate_only(sprite, sprites) {
+    let animFrame = 1;
+
+    let getAsset = function () {
+        // which index in the array
+        let num = animFrame % sprites.length;
+        return sprites[num];
+    }
+
+    let animateTrue = function () {
+        sprite_asset = getAsset();
+        sprite.changeAsset(sprite_asset);
+        animFrame++;
+    }
+
+    return setInterval(animateTrue, 60);
+}
