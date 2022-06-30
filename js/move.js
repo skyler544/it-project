@@ -33,20 +33,18 @@ function animatePlayer(welt, speed) {
 
     let animFrame = 1;
     let isMoving = 0;
-    let rightPressed = false;
-    let leftPressed = false;
-    let upPressed = false;
-    let downPressed = false;
     let blick_richtung_rechts = true;
+    let ev = new MyEvent;
+    ev.start();
 
     let movePlayer = function () {
-        if (rightPressed) {
+        if (ev.rightPressed) {
             move(sprite, speed, 0);
-        } if (leftPressed) {
+        } if (ev.leftPressed) {
             move(sprite, -speed, 0);
-        } if (upPressed) {
+        } if (ev.upPressed) {
             move(sprite, 0, -speed);
-        } if (downPressed) {
+        } if (ev.downPressed) {
             move(sprite, 0, speed);
         }
     }
@@ -58,7 +56,7 @@ function animatePlayer(welt, speed) {
     }
 
     let animate = function () {
-        if (upPressed || downPressed || rightPressed || leftPressed) {
+        if (ev.upPressed || ev.downPressed || ev.rightPressed || ev.leftPressed) {
             isMoving = 1;
         } else {
             isMoving = 0;
@@ -66,38 +64,35 @@ function animatePlayer(welt, speed) {
         movePlayer();
         sprite_asset = getAsset();
         sprite.changeAsset(sprite_asset);
-        if (blick_richtung_rechts && leftPressed) { sprite.reverseX(); blick_richtung_rechts = false; }
-        else if (!blick_richtung_rechts && rightPressed) { sprite.reverseX(); blick_richtung_rechts = true; }
+        if (blick_richtung_rechts && ev.leftPressed) { sprite.reverseX(); blick_richtung_rechts = false; }
+        else if (!blick_richtung_rechts && ev.rightPressed) { sprite.reverseX(); blick_richtung_rechts = true; }
         welt.print();
         animFrame++;
     }
 
     setInterval(animate, 60);
+}
 
-    let keyDownHandler = function (e) {
-        if (e.key == "d" || e.key == "Right" || e.key == "ArrowRight") {
-            rightPressed = true;
-        } else if (e.key == "a" || e.key == "Left" || e.key == "ArrowLeft") {
-            leftPressed = true;
-        } else if (e.key == "w" || e.key == "Up" || e.key == "ArrowUp") {
-            upPressed = true;
-        } else if (e.key == "s" || e.key == "Down" || e.key == "ArrowDown") {
-            downPressed = true;
-        }
+/**
+ * @brief Animate an asset-component using an array of sprites / assets. Does not print it !!!
+ * @param { world } welt // the world
+ * @param { component } sprite // the component
+ * @param { asset[] } sprites // which assets - name
+ */
+function animate_only(sprite, sprites) {
+    let animFrame = 1;
+
+    let getAsset = function () {
+        // which index in the array
+        let num = animFrame % sprites.length;
+        return sprites[num];
     }
 
-    let keyUpHandler = function (e) {
-        if (e.key == "d" || e.key == "Right" || e.key == "ArrowRight") {
-            rightPressed = false;
-        } else if (e.key == "a" || e.key == "Left" || e.key == "ArrowLeft") {
-            leftPressed = false;
-        } else if (e.key == "w" || e.key == "Up" || e.key == "ArrowUp") {
-            upPressed = false;
-        } else if (e.key == "s" || e.key == "Down" || e.key == "ArrowDown") {
-            downPressed = false;
-        }
+    let animateTrue = function () {
+        sprite_asset = getAsset();
+        sprite.changeAsset(sprite_asset);
+        animFrame++;
     }
 
-    document.addEventListener("keydown", keyDownHandler, false);
-    document.addEventListener("keyup", keyUpHandler, false);
+    return setInterval(animateTrue, 60);
 }
