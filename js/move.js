@@ -56,17 +56,18 @@ function animatePlayer(welt, speed) {
 
     let animFrame = 1;
     let isMoving = 0;
-    let kh = new KeyHandler();
     let blick_richtung_rechts = true;
+    let ev = new MyEvent;
+    ev.start();
 
     let movePlayer = function () {
-        if (kh.d in kh.keysDown || kh.right in kh.keysDown) {
+        if (ev.rightPressed) {
             move(sprite, speed, 0);
-        } if (kh.a in kh.keysDown || kh.left in kh.keysDown) {
+        } if (ev.leftPressed) {
             move(sprite, -speed, 0);
-        } if (kh.w in kh.keysDown || kh.up in kh.keysDown) {
+        } if (ev.upPressed) {
             move(sprite, 0, -speed);
-        } if (kh.s in kh.keysDown || kh.down in kh.keysDown) {
+        } if (ev.downPressed) {
             move(sprite, 0, speed);
         }
     }
@@ -78,7 +79,7 @@ function animatePlayer(welt, speed) {
     }
 
     let animate = function () {
-        if (Object.keys(kh.keysDown).length !== 0) {
+        if (ev.upPressed || ev.downPressed || ev.rightPressed || ev.leftPressed) {
             isMoving = 1;
         } else {
             isMoving = 0;
@@ -86,16 +87,35 @@ function animatePlayer(welt, speed) {
         movePlayer();
         sprite_asset = getAsset();
         sprite.changeAsset(sprite_asset);
-        if (blick_richtung_rechts && (kh.a in kh.keysDown || kh.left in kh.keysDown)) {
-            sprite.reverseX();
-            blick_richtung_rechts = false;
-        } else if (!blick_richtung_rechts && (kh.d in kh.keysDown || kh.right in kh.keysDown)) {
-            sprite.reverseX();
-            blick_richtung_rechts = true;
-        }
+        if (blick_richtung_rechts && ev.leftPressed) { sprite.reverseX(); blick_richtung_rechts = false; }
+        else if (!blick_richtung_rechts && ev.rightPressed) { sprite.reverseX(); blick_richtung_rechts = true; }
         welt.print();
         animFrame++;
     }
 
     setInterval(animate, 60);
+}
+
+/**
+ * @brief Animate an asset-component using an array of sprites / assets. Does not print it !!!
+ * @param { world } welt // the world
+ * @param { component } sprite // the component
+ * @param { asset[] } sprites // which assets - name
+ */
+function animate_only(sprite, sprites) {
+    let animFrame = 1;
+
+    let getAsset = function () {
+        // which index in the array
+        let num = animFrame % sprites.length;
+        return sprites[num];
+    }
+
+    let animateTrue = function () {
+        sprite_asset = getAsset();
+        sprite.changeAsset(sprite_asset);
+        animFrame++;
+    }
+
+    return setInterval(animateTrue, 60);
 }
