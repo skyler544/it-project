@@ -120,4 +120,3 @@ function animate_once(sprite, sprites) {
 
     animateTrue();
 }
->>>>>>> main
