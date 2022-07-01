@@ -140,12 +140,17 @@ function main() {
         }
     }
 
+    let oldX = player.x;
+    let oldY = player.y;
     let repeat = function() {
         if (ev.enterPressed) {
             player.slash();
         }
-        console.log(w.check_collision(player));
-        if (!w.check_collision(player)) { movePlayer(); } // don't move, when a collision occurs
+        if (!w.check_collision(player, oldX, oldY)) { // don't move, when a collision occurs
+            oldX = player.x;
+            oldY = player.y;
+            movePlayer();
+        }
         w.print();
     }
 
