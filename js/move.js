@@ -16,28 +16,6 @@ function moveSquare(comp, direction) {
 }
 
 
-class KeyHandler {
-    w = 87;
-    a = 65;
-    s = 83;
-    d = 68;
-    left = 37;
-    up = 38;
-    right = 39;
-    down = 40;
-    keysDown = {};
-    constructor() {
-        document.addEventListener("keydown", this.keyDownHandler.bind(this), false);
-        document.addEventListener("keyup", this.keyUpHandler.bind(this), false);
-    }
-    keyDownHandler(e) {
-        this.keysDown[e.keyCode] = true;
-    }
-    keyUpHandler(e) {
-        delete this.keysDown[e.keyCode];
-    }
-}
-
 /**
  *
  * @param {world} welt
