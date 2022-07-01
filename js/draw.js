@@ -38,20 +38,20 @@ class component {
         this.type = type; // text, image, rect, ...
         if (type == "asset") {
             this.image = string.img; // string is an asset() object
-        } else if(type == "image" || type == "background") {
+        } else if (type == "image" || type == "background") {
             this.image = new Image(); // create a new image
             this.image.src = string;
         }
-        
+
         // this.update() draws the thing on the game, that is why each type of thing must have its own "this.update" function
         if (type == "rect") { // let's draw a rectangle
-            this.update = function() {
+            this.update = function () {
                 let ctx = gameArea.context;
                 ctx.fillStyle = this.color;
                 ctx.fillRect(this.x, this.y, this.width, this.height);
             }
         } else if (type == "circle") { // let's draw a circle
-            this.update = function() {
+            this.update = function () {
                 let ctx = gameArea.context;
                 ctx.fillStyle = this.color; // set fillStyle
                 ctx.beginPath(); // ok, here we start
@@ -60,7 +60,7 @@ class component {
                 ctx.fill(); // apply fillStyle
             }
         } else if (type == "image" || type == "asset") {
-            this.update = function() {
+            this.update = function () {
                 let ctx = gameArea.context;
                 // set height / width
                 this.x *= this.scaleX;
@@ -102,7 +102,7 @@ class component {
                 ctx.restore();
             }
         } else if (type == "text") {
-            this.update = function() {
+            this.update = function () {
                 let ctx = gameArea.context;
                 // width = font-size, height = font-family
                 ctx.font = this.width + "px " + this.height;
@@ -115,12 +115,12 @@ class component {
         // for now the percent are relative to the width
         // you can change it to the height by replacing "gameArea.canvas.width"
         // by "gameArea.canvas.height" in line 1 (== 169), 3 (== 171), 5 (== 173) and 6 (174)
-        this.width = (this.width/100) * gameArea.canvas.width /* width: percent to pixel */
+        this.width = (this.width / 100) * gameArea.canvas.width /* width: percent to pixel */
         if (typeof this.height == "number") { // don't, if height is e.g. a font-family - string e.g. "Arial"
-            this.height = (this.height/100) * gameArea.canvas.width // height: percent to pixel
+            this.height = (this.height / 100) * gameArea.canvas.width // height: percent to pixel
         }
-        this.x = (this.x/100) * gameArea.canvas.width /* height: percent to pixel - location on the x axis */
-        this.y = (this.y/100) * gameArea.canvas.width /* height: percent to pixel - location on the y axis */
+        this.x = (this.x / 100) * gameArea.canvas.width /* height: percent to pixel - location on the x axis */
+        this.y = (this.y / 100) * gameArea.canvas.width /* height: percent to pixel - location on the y axis */
     }
     reverseX() {
         this.scaleX *= -1;

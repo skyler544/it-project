@@ -3,9 +3,10 @@
  */
 class world_object extends component {
     life; // -1 for indestructible
-    damge; // amount of damage done when something crashes into it
+    damage; // amount of damage done when something crashes into it
     speed;
     // can also be named "crash"
+    // walkable would be a better translation
     begehbar; // can you move over it? / Or do you crash into it
     height = SQUARE_SIDE_LEN;
     width = SQUARE_SIDE_LEN;
