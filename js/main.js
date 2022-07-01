@@ -131,6 +131,9 @@ function main() {
 
     let repeat = function() {
         movePlayer();
+        if (ev.enterPressed) {
+            player.slash();
+        }
         w.print();
     }
 
