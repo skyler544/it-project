@@ -27,8 +27,14 @@ class world {
              */
             obj => {
             if (!obj.begehbar && obj !== player) { // only if you cannot walk over the obj
-                if(player.x >= obj.x && player.x <= obj.x + obj.width) {
-                    if (player.y >= obj.y && player.y <= obj.y + obj.height) {
+                let bound = {
+                    right: obj.x + obj.width,
+                    left: obj.x - obj.width,
+                    up: obj.y - obj.height,
+                    down: obj.y + obj.height
+                }
+                if(player.x > bound.left && player.x < bound.right) {
+                    if (player.y > bound.up && player.y < bound.down) {
                         player.collide(obj); // eventually destroy obj
                         obj.collide(player); // eventually do something to player
                         player.x = oldX;
