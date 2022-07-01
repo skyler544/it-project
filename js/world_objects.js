@@ -3,12 +3,17 @@
  */
 class world_object extends component {
     life; // -1 for indestructible
-    damge; // amount of damage done when something crashes into it
+    damage; // amount of damage done when something crashes into it
     speed;
     // can also be named "crash"
     begehbar; // can you move over it? / Or do you crash into it
     height = SQUARE_SIDE_LEN;
     width = SQUARE_SIDE_LEN;
+    /**
+     * 
+     * @param { world_object } other 
+     */
+    collide(other) {}
 }
 
 class Wall extends world_object {
@@ -29,6 +34,7 @@ class Wall extends world_object {
         this.begehbar = false;
         this.speed = 0;
     }
+    // collide does not need to do anything
 }
 
 class Grass_Floor extends world_object {
