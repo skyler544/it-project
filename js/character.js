@@ -2,7 +2,7 @@ class Character extends world_object {
     speed;
     isMoving = false;
     begehbar = false;
-    
+
     // which assets are needed for the animation
     assets = {
         default: [], // default animation
@@ -52,7 +52,7 @@ class Player extends Character {
         this.percentTOpixel();
 
         this.map = map;
-        this.assets.default =  [1, 2, 3, 4, 5, 6],
+        this.assets.default = [1, 2, 3, 4, 5, 6],
         this.assets.moving = [7, 8, 9, 10, 11, 12],
         this.assets.slash = [14, 15],
 

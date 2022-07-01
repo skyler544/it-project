@@ -11,18 +11,18 @@ class world_object extends component {
     height = SQUARE_SIDE_LEN;
     width = SQUARE_SIDE_LEN;
     /**
-     * 
-     * @param { world_object } other 
+     *
+     * @param { world_object } other
      */
-    collide(other) {}
+    collide(other) { }
 }
 
 class Wall extends world_object {
     /**
-     * 
-     * @param { string } name 
-     * @param { number } x 
-     * @param { number } y 
+     *
+     * @param { string } name
+     * @param { number } x
+     * @param { number } y
      */
     constructor(name, x, y) {
         let map = assetMap.mystic_woods.tilesets.walls.walls;
@@ -40,11 +40,11 @@ class Wall extends world_object {
 
 class Grass_Floor extends world_object {
     /**
-     * 
-     * @param { number } x 
-     * @param { number } y 
+     *
+     * @param { number } x
+     * @param { number } y
      */
-     constructor(x, y) {
+    constructor(x, y) {
         let map = assetMap.mystic_woods.tilesets.floors.grass;
         super("asset", new asset(map, "grass"));
         this.x = x * SQUARE_SIDE_LEN;
@@ -59,11 +59,11 @@ class Grass_Floor extends world_object {
 
 class Wooden_Floor extends world_object {
     /**
-     * 
-     * @param { number } x 
-     * @param { number } y 
+     *
+     * @param { number } x
+     * @param { number } y
      */
-     constructor(x, y) {
+    constructor(x, y) {
         let map = assetMap.mystic_woods.tilesets.floors.wooden;
         super("asset", new asset(map, "wooden"));
         this.height = SQUARE_SIDE_LEN;
@@ -80,12 +80,12 @@ class Wooden_Floor extends world_object {
 
 class Wooden_Door extends world_object {
     /**
-     * 
-     * @param { string } name 
-     * @param { number } x 
-     * @param { number } y 
+     *
+     * @param { string } name
+     * @param { number } x
+     * @param { number } y
      */
-     constructor(name, x, y) {
+    constructor(name, x, y) {
         let map = assetMap.mystic_woods.tilesets.walls.wooden_door;
         super("asset", new asset(map, name));
         this.height = SQUARE_SIDE_LEN;
@@ -96,19 +96,19 @@ class Wooden_Door extends world_object {
 
         this.life = -1; // indestructible
         if (name == "closed") { this.begehbar = false; }
-        else if(name == "open") { this.begehbar = true; }
+        else if (name == "open") { this.begehbar = true; }
         this.speed = 0;
     }
 }
 
 class Wooden_Door_B extends world_object {
     /**
-     * 
-     * @param { string } name 
-     * @param { number } x 
-     * @param { number } y 
+     *
+     * @param { string } name
+     * @param { number } x
+     * @param { number } y
      */
-     constructor(name, x, y) {
+    constructor(name, x, y) {
         let map = assetMap.mystic_woods.tilesets.walls.wooden_door_b;
         super("asset", new asset(map, name));
         this.height = SQUARE_SIDE_LEN;
@@ -119,7 +119,7 @@ class Wooden_Door_B extends world_object {
 
         this.life = -1; // indestructible
         if (name == "closed") { this.begehbar = false; }
-        else if(name == "open") { this.begehbar = true; }
+        else if (name == "open") { this.begehbar = true; }
         this.speed = 0;
     }
 }

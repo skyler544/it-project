@@ -142,7 +142,7 @@ function main() {
 
     let oldX = player.x;
     let oldY = player.y;
-    let repeat = function() {
+    let repeat = function () {
         if (ev.enterPressed) {
             player.slash();
         }
