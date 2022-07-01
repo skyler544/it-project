@@ -15,6 +15,7 @@ function moveSquare(comp, direction) {
     else if (direction == "down") { move(comp, 0, SQUARE_SIDE_LEN); }
 }
 
+
 /**
  *
  * @param {world} welt
@@ -51,7 +52,7 @@ function animatePlayer(welt, speed) {
 
     let getAsset = function () {
         // which number the asset has
-        let num = ((animFrame % sprite_map.num_col) + 1) + sprite_map.num_col * isMoving
+        let num = ((animFrame % sprite_map.num_col) + 1) + sprite_map.num_col * isMoving;
         return new asset(sprite_map, num);
     }
 
