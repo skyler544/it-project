@@ -1,6 +1,7 @@
 class Character extends world_object {
     speed;
     isMoving = false;
+    begehbar = false;
     
     // which assets are needed for the animation
     assets = {
