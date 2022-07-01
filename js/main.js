@@ -114,6 +114,7 @@ function main() {
     slime.x = 14 * SQUARE_SIDE_LEN;
     slime.y = 5 * SQUARE_SIDE_LEN;
     slime.percentTOpixel();
+    slime.begehbar = false;
     w.add(slime);
 
     const ev = new MyEvent();
@@ -139,10 +140,16 @@ function main() {
         }
     }
 
+    let oldX = player.x;
+    let oldY = player.y;
     let repeat = function() {
-        movePlayer();
         if (ev.enterPressed) {
             player.slash();
+        }
+        if (!w.check_collision(player, oldX, oldY)) { // don't move, when a collision occurs
+            oldX = player.x;
+            oldY = player.y;
+            movePlayer();
         }
         w.print();
     }
