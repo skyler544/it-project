@@ -106,6 +106,16 @@ function main() {
     let player = new Player(0, 0);
     w.add(player);
 
+    let slime_map = assetMap.mystic_woods.characters.slime;
+    let slime_asset = new asset(slime_map, 1);
+    let slime = new component("asset", slime_asset);
+    slime.width = SQUARE_SIDE_LEN;
+    slime.height = SQUARE_SIDE_LEN;
+    slime.x = 14 * SQUARE_SIDE_LEN;
+    slime.y = 5 * SQUARE_SIDE_LEN;
+    slime.percentTOpixel();
+    w.add(slime);
+
     const ev = new MyEvent();
     const speed = 1;
     ev.start();

@@ -64,12 +64,93 @@ class assetMapPart {
 
 const assetMap = {
     init : function() {
+        // floors
         this.mystic_woods.tilesets.floors.wooden.add("wooden", 1, 1);
         this.mystic_woods.tilesets.floors.grass.add("grass", 1, 1);
+
+        // doors
         this.mystic_woods.tilesets.walls.wooden_door_b.add("closed", 1, 1);
         this.mystic_woods.tilesets.walls.wooden_door_b.add("open", 2, 1);
         this.mystic_woods.tilesets.walls.wooden_door.add("closed", 1, 1);
         this.mystic_woods.tilesets.walls.wooden_door.add("open", 2, 1);
+
+        // chests
+        this.mystic_woods.objects.chest_01.add("closed 1", 1, 1);
+        this.mystic_woods.objects.chest_01.add("closed 2", 2, 1);
+        this.mystic_woods.objects.chest_01.add("open 1", 3, 1);
+        this.mystic_woods.objects.chest_01.add("open 2", 4, 1);
+
+        // decor 8x8
+        this.mystic_woods.tilesets.decor_8x8.add("grass 1", 1, 1);
+        this.mystic_woods.tilesets.decor_8x8.add("grass 2", 2, 1);
+        this.mystic_woods.tilesets.decor_8x8.add("grass 3", 3, 1);
+        this.mystic_woods.tilesets.decor_8x8.add("grass 4", 4, 1);
+        this.mystic_woods.tilesets.decor_8x8.add("dirt 1", 1, 4);
+        this.mystic_woods.tilesets.decor_8x8.add("dirt 2", 2, 4);
+        this.mystic_woods.tilesets.decor_8x8.add("dirt 3", 3, 4);
+        this.mystic_woods.tilesets.decor_8x8.add("dirt 4", 4, 4);
+
+        // decor 16x16
+        this.mystic_woods.tilesets.decor_16x16.add("grass 1", 1, 1);
+        this.mystic_woods.tilesets.decor_16x16.add("grass 2", 2, 1);
+        this.mystic_woods.tilesets.decor_16x16.add("grass 3", 3, 1);
+        this.mystic_woods.tilesets.decor_16x16.add("grass 4", 4, 1);
+        this.mystic_woods.tilesets.decor_16x16.add("dirt 1", 1, 5);
+        this.mystic_woods.tilesets.decor_16x16.add("dirt 2", 2, 5);
+        this.mystic_woods.tilesets.decor_16x16.add("dirt 3", 3, 5);
+        this.mystic_woods.tilesets.decor_16x16.add("dirt 4", 4, 5);
+
+        // fences
+        this.mystic_woods.tilesets.fences.add("unten", 1, 1);
+        this.mystic_woods.tilesets.fences.add("unten + rechts", 2, 1);
+        this.mystic_woods.tilesets.fences.add("unten + rechts + links", 3, 1);
+        this.mystic_woods.tilesets.fences.add("unten + links", 4, 1);
+
+        this.mystic_woods.tilesets.fences.add("oben + unten", 1, 2);
+        this.mystic_woods.tilesets.fences.add("oben + unten + rechts", 2, 2);
+        this.mystic_woods.tilesets.fences.add("oben + unten + rechts + links", 3, 2);
+        this.mystic_woods.tilesets.fences.add("oben + unten + links", 4, 2);
+
+        this.mystic_woods.tilesets.fences.add("oben", 1, 3);
+        this.mystic_woods.tilesets.fences.add("oben + rechts", 2, 3);
+        this.mystic_woods.tilesets.fences.add("oben + rechts + links", 3, 3);
+        this.mystic_woods.tilesets.fences.add("oben + links", 4, 3);
+
+        this.mystic_woods.tilesets.fences.add("einzel", 1, 4);
+        this.mystic_woods.tilesets.fences.add("rechts", 2, 4);
+        this.mystic_woods.tilesets.fences.add("rechts + links", 3, 4);
+        this.mystic_woods.tilesets.fences.add("links", 4, 4);
+
+        // slime
+        this.mystic_woods.characters.slime.add(1, 1, 1);
+        this.mystic_woods.characters.slime.add(2, 2, 1);
+        this.mystic_woods.characters.slime.add(3, 3, 1);
+        this.mystic_woods.characters.slime.add(4, 4, 1);
+
+        this.mystic_woods.characters.slime.add(5, 1, 2);
+        this.mystic_woods.characters.slime.add(6, 2, 2);
+        this.mystic_woods.characters.slime.add(7, 3, 2);
+        this.mystic_woods.characters.slime.add(8, 4, 2);
+        this.mystic_woods.characters.slime.add(9, 5, 2);
+        this.mystic_woods.characters.slime.add(10, 6, 2);
+
+        this.mystic_woods.characters.slime.add(11, 1, 3);
+        this.mystic_woods.characters.slime.add(12, 2, 3);
+        this.mystic_woods.characters.slime.add(13, 3, 3);
+        this.mystic_woods.characters.slime.add(14, 4, 3);
+        this.mystic_woods.characters.slime.add(15, 5, 3);
+        this.mystic_woods.characters.slime.add(16, 6, 3);
+        this.mystic_woods.characters.slime.add(17, 7, 3);
+        
+        this.mystic_woods.characters.slime.add(18, 1, 4);
+        this.mystic_woods.characters.slime.add(19, 2, 4);
+        this.mystic_woods.characters.slime.add(20, 3, 4);
+
+        this.mystic_woods.characters.slime.add(21, 1, 5);
+        this.mystic_woods.characters.slime.add(22, 2, 5);
+        this.mystic_woods.characters.slime.add(23, 3, 5);
+        this.mystic_woods.characters.slime.add(24, 4, 5);
+        this.mystic_woods.characters.slime.add(25, 5, 5);
     },
     mystic_woods: {
         characters: {
@@ -104,9 +185,17 @@ const assetMap = {
                 17 : { startX: 0+12, endX: 47, startY: 48*4+17, endY: 0 },
                 18 : { startX: 48+12, endX: 95, startY: 48*4+17, endY: 0 },
                 19 : { startX: 96+12, endX: 143, startY: 48*4+17, endY: 0 },
-            }
+            }, 
+            slime : new assetMapPart("asset/mystic_woods/characters/slime.png", 7, 5, 224, 160),
+        },
+        objects : {
+            chest_01 : new assetMapPart("assets/mystic_woods/objects/chest_01.png", 4, 1, 64, 16),
+
         },
         tilesets : {
+            decor_8x8 : new assetMapPart("asset/mystic_woods/tilesets/decor_8x8.png", 4, 4, 32, 32),
+            decor_16x16 : new assetMapPart("asset/mystic_woods/tilesets/decor_16x16.png", 4, 5, 64, 80),
+            fences : new assetMapPart("asset/mystic_woods/tilesets/fences.png", 4, 4, 64, 64),
             floors : {
                 wooden : new assetMapPart("asset/mystic_woods/tilesets/floors/wooden.png", 1, 1, 16, 16),
                 grass : new assetMapPart("asset/mystic_woods/tilesets/floors/grass.png", 1, 1, 16, 16),
