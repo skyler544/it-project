@@ -6,6 +6,7 @@ class MyEvent {
         this.leftPressed = false;
         this.upPressed = false;
         this.downPressed = false;
+        this.enterPressed = false;
     }
     keyUpHandler(e) {
         if (e.key == "d" || e.key == "Right" || e.key == "ArrowRight") {
@@ -16,6 +17,8 @@ class MyEvent {
             this.upPressed = false;
         } else if (e.key == "s" || e.key == "Down" || e.key == "ArrowDown") {
             this.downPressed = false;
+        } else if (e.key == "Enter") {
+            this.enterPressed = false;
         }
     }
     keyDownHandler(e) {
@@ -27,6 +30,8 @@ class MyEvent {
             this.upPressed = true;
         } else if (e.key == "s" || e.key == "Down" || e.key == "ArrowDown") {
             this.downPressed = true;
+        } else if (e.key == "Enter") {
+            this.enterPressed = true;
         }
     }
     start() {

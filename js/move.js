@@ -102,22 +102,20 @@ function animate_only(sprite, sprites) {
  * @param { asset[] } sprites // which assets - name
  */
 function animate_once(sprite, sprites) {
-    let animFrame = 1;
+    let animFrame = 0;
 
     let getAsset = function () {
-        // which index in the array
-        let num = animFrame % sprites.length;
-        return sprites[num];
+        return sprites[animFrame];
     }
 
     let animateTrue = function () {
         sprite_asset = getAsset();
         sprite.changeAsset(sprite_asset);
-        if (animFrame <= sprites.length) {
-            animFrame++;
+        animFrame++;
+        if (animFrame < sprites.length) {
             setTimeout(animateTrue, 60);
         }
     }
 
-    return animateTrue();
+    animateTrue();
 }
