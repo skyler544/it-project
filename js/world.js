@@ -26,7 +26,8 @@ class world {
              * @param { world_object } obj
              */
             obj => {
-                if (!obj.begehbar && obj !== player) { // only if you cannot walk over the obj
+                // even objects with property begehbar my have events (e.g doors)
+                if (/* !obj.begehbar && */ obj !== player) { // only if you cannot walk over the obj
                     let bound = {
                         right: obj.x + obj.width,
                         left: obj.x - obj.width,
@@ -37,13 +38,31 @@ class world {
                         if (player.y > bound.up && player.y < bound.down) {
                             player.collide(obj); // eventually destroy obj
                             obj.collide(player); // eventually do something to player
-                            player.x = oldX;
-                            player.y = oldY;
-                            ret = true;
+                            // if you cannot walk on the object -> go back to previous position + seal movement
+                            if (!obj.begehbar) {
+                                player.x = oldX;
+                                player.y = oldY;
+                                ret = true
+                            }
                         }
                     }
                 }
             });
         return ret;
+    }
+    check_destroyed() {
+        this.comps.forEach(
+            /**
+             * @param { world_object } obj
+             * @param { number } index
+             */
+            (obj, index, object) => {
+                // if life == 0 and the object is not already destroying itself
+                if (obj.life == 0 && !obj.destroying) {
+                    obj.destroying = true;
+                    let doit = () => { this.comps.splice(index, 1); };
+                    obj.destroy(doit);
+                }
+        });
     }
 }

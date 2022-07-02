@@ -101,8 +101,9 @@ function animate_only(sprite, sprites) {
  * @brief Animate an asset-component once using an array of sprites / assets. Does not print it !!!
  * @param { component } sprite // the component
  * @param { asset[] } sprites // which assets - name
+ * @param { function } callback // optinonal: call the function after having executed the animation 
  */
-function animate_once(sprite, sprites) {
+function animate_once(sprite, sprites, callback) {
     let animFrame = 0;
 
     let getAsset = function () {
@@ -115,6 +116,10 @@ function animate_once(sprite, sprites) {
         animFrame++;
         if (animFrame < sprites.length) {
             setTimeout(animateTrue, 60);
+        } else {
+            if (callback != undefined) {
+                callback();
+            }
         }
     }
 
