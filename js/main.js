@@ -106,15 +106,7 @@ function main() {
     let player = new Player(0, 0);
     w.add(player);
 
-    let slime_map = assetMap.mystic_woods.characters.slime;
-    let slime_asset = new asset(slime_map, 1);
-    let slime = new component("asset", slime_asset);
-    slime.width = SQUARE_SIDE_LEN;
-    slime.height = SQUARE_SIDE_LEN;
-    slime.x = 14 * SQUARE_SIDE_LEN;
-    slime.y = 5 * SQUARE_SIDE_LEN;
-    slime.percentTOpixel();
-    slime.begehbar = false;
+    let slime = new Slime(14, 5);
     w.add(slime);
 
     const ev = new MyEvent();
@@ -145,12 +137,15 @@ function main() {
     let repeat = function () {
         if (ev.enterPressed) {
             player.slash();
+            // slime.life = 0;
+            // w.check_destroyed();
         }
         if (!w.check_collision(player, oldX, oldY)) { // don't move, when a collision occurs
             oldX = player.x;
             oldY = player.y;
             movePlayer();
         }
+        w.check_destroyed();
         w.print();
     }
 
