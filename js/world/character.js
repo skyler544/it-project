@@ -2,6 +2,7 @@ class Character extends world_object {
     isMoving = false;
     begehbar = false;
     isAttacking = false;
+    animrate = 60;
 
     // which assets are needed for the animation
     assets = {
@@ -20,13 +21,13 @@ class Character extends world_object {
     // movement && animation
     init() {
         let arr = this.getAssets("default");
-        this.anim = animate_only(this, arr);
+        this.anim = animate_only(this, arr, this.animrate);
     }
     move_start() {
         if (!this.isMoving) {
             clearInterval(this.anim);
             let arr = this.getAssets("moving");
-            this.anim = animate_only(this, arr);
+            this.anim = animate_only(this, arr, this.animrate);
             this.isMoving = true;
         }
     }
@@ -45,7 +46,7 @@ class Character extends world_object {
     destroy(callback) {
         clearInterval(this.anim);
         let arr = this.getAssets("destroy");
-        this.anim = animate_once(this, arr, callback);
+        this.anim = animate_once(this, arr, this.animrate, callback);
     }
 }
 
@@ -73,7 +74,7 @@ class Player extends Character {
         let arr = this.getAssets("slash");
         this.isAttacking = true;
         let resetAtt = () => { this.isAttacking = false; }
-        this.anim = animate_once(this, arr, resetAtt);
+        this.anim = animate_once(this, arr, this.animrate, resetAtt);
     }
     /**
      * 
@@ -108,6 +109,7 @@ class Slime extends Character {
         this.life = 1;
         this.damage = 1;
         this.speed = 1; // 1%
+        this.animrate = 100;
         this.blick_richtung_rechts = true;
         this.init();
     }
