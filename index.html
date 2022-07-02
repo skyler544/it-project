@@ -12,15 +12,24 @@
 <body>
     <!-- <canvas id="game"></canvas> -->
     <canvas id="game"></canvas>
+    
+    <!-- config : load configuration variable -->
     <script src="js/config.js"></script>
-    <script src="js/events.js"></script>
-    <script src="js/asset.js"></script>
-    <script src="js/component.js"></script>
-    <script src="js/draw.js"></script>
-    <script src="js/world_objects.js"></script>
-    <script src="js/character.js"></script>
-    <script src="js/world.js"></script>
-    <script src="js/move.js"></script>
+
+    <!-- core : the basics for printing, moving and animating in canvas + handling assets -->
+    <script src="js/core/events.js"></script>
+    <script src="js/core/asset.js"></script>
+    <script src="js/core/component.js"></script>
+    <script src="js/core/draw.js"></script>
+    <script src="js/core/move.js"></script>
+    <script src="js/core/animation.js"></script>
+
+    <!-- world : the objects of the world (preconfigured) - do not need to print manually -->
+    <script src="js/world/world_objects.js"></script>
+    <script src="js/world/character.js"></script>
+    <script src="js/world/world.js"></script>
+
+    <!-- main : the entry point -->
     <script src="js/main.js"></script>
 </body>
 </html>
