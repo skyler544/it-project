@@ -111,7 +111,6 @@ function main() {
 
     const ev = new MyEvent();
     const speed = 1;
-    ev.start();
 
     let movePlayer = function () {
         // if player any arrow key is pressed -> player is moving (start movement animation)
@@ -132,15 +131,26 @@ function main() {
         }
     }
 
+    var intervall;
+    let loadWorld = function() {
+        ev.start();
+        intervall = setInterval(repeat, 60);
+    }
+
     let oldX = player.x;
     let oldY = player.y;
     let repeat = function () {
         if (ev.enterPressed) {
             player.slash();
-            // slime.life = 0;
-            // w.check_destroyed();
         }
-        if (!w.check_collision(player, oldX, oldY)) { // don't move, when a collision occurs
+        let coll_res = w.check_collision(player, oldX, oldY);
+        if (typeof coll_res == "object") {
+            console.log(typeof coll_res);
+            clearInterval(intervall);
+            ev.end();
+            if (player.isMoving) { player.move_end(); }
+            pokemon_fight(player, coll_res, loadWorld);
+        } else if (!coll_res) { // don't move, when a collision occurs
             oldX = player.x;
             oldY = player.y;
             movePlayer();
@@ -149,8 +159,5 @@ function main() {
         w.print();
     }
 
-    let intervall = setInterval(repeat, 60);
-
-    clearInterval(intervall);
-    pokemon_fight(player, slime);
+    loadWorld();
 }

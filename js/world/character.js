@@ -72,10 +72,18 @@ class Player extends Character {
 
         // attacks / actions for the pokemon-style fight
         this.actions = {
-            slash : () => {},
-            sleep : () => {},
-            nothing : () => { return "This is a placeholder. Nothing happend."; },
-            nothing : () => { return "This is a placeholder. Nothing happend."; },
+            slash : (enemy) => { this.slash(); this.collide(enemy); return ""; },
+            sleep : (enemy) => {
+                this.isAttacking = true;
+                this.destroy(() => {
+                    this.anim = this.init();
+                    this.isAttacking = false;
+                    this.life += 1;
+                });
+                return "+1 life";
+            },
+            nothing : (enemy) => { return "This is a placeholder. Nothing happend."; },
+            nothing : (enemy) => { return "This is a placeholder. Nothing happend."; },
         }
     }
     slash() {
@@ -127,10 +135,10 @@ class Slime extends Character {
 
         // attacks / actions for the pokemon-style fight
         this.actions = {
-            splash : () => { return "Slime used \"Splash\". Nothing happend."; },
-            littlejumg : () => {},
-            jump : () => {},
-            bigjump : () => {},
+            splash : () => { return "Nothing happend."; },
+            littlejumg : () => { return ""; },
+            jump : () => { return ""; },
+            bigjump : () => { return ""; },
         }
     }
 }
