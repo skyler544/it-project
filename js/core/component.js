@@ -81,9 +81,13 @@ class component {
             this.update = function () {
                 let ctx = gameArea.context;
                 // width = font-size, height = font-family
-                ctx.font = this.width + "px " + this.height;
-                ctx.fillStyle = this.color;
-                ctx.fillText(this.value, this.x, this.y);
+                let textArr = this.value.split("\n");
+                textArr.forEach((text, index) => {
+                    ctx.font = this.width + "px " + this.height;
+                    ctx.fillStyle = this.color;
+                    let trueY = this.y + index * this.width;
+                    ctx.fillText(text, this.x, trueY);
+                });
             }
         }
     }
@@ -91,12 +95,18 @@ class component {
         // for now the percent are relative to the width
         // you can change it to the height by replacing "gameArea.canvas.width"
         // by "gameArea.canvas.height" in line 1 (== 169), 3 (== 171), 5 (== 173) and 6 (174)
-        this.width = (this.width / 100) * gameArea.canvas.width /* width: percent to pixel */
+        // this.width = (this.width / 100) * gameArea.canvas.width /* width: percent to pixel */
+        // if (typeof this.height == "number") { // don't, if height is e.g. a font-family - string e.g. "Arial"
+        //     this.height = (this.height / 100) * gameArea.canvas.width // height: percent to pixel
+        // }
+        // this.x = (this.x / 100) * gameArea.canvas.width /* height: percent to pixel - location on the x axis */
+        // this.y = (this.y / 100) * gameArea.canvas.width /* height: percent to pixel - location on the y axis */
+        this.width = gameArea.percentTOpixel(this.width); /* width: percent to pixel */
         if (typeof this.height == "number") { // don't, if height is e.g. a font-family - string e.g. "Arial"
-            this.height = (this.height / 100) * gameArea.canvas.width // height: percent to pixel
+            this.height = gameArea.percentTOpixel(this.height); // height: percent to pixel
         }
-        this.x = (this.x / 100) * gameArea.canvas.width /* height: percent to pixel - location on the x axis */
-        this.y = (this.y / 100) * gameArea.canvas.width /* height: percent to pixel - location on the y axis */
+        this.x = gameArea.percentTOpixel(this.x); /* height: percent to pixel - location on the x axis */
+        this.y = gameArea.percentTOpixel(this.y); /* height: percent to pixel - location on the y axis */
     }
     reverseX() {
         this.scaleX *= -1;

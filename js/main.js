@@ -150,4 +150,7 @@ function main() {
     }
 
     let intervall = setInterval(repeat, 60);
+
+    clearInterval(intervall);
+    pokemon_fight(player, slime);
 }

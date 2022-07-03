@@ -19,5 +19,16 @@ var gameArea = {
     },
     clear: function () {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    },
+    percentTOpixel: function (p) {
+        return percTOpix(p, this.canvas.width);
     }
+}
+
+/**
+ * 
+ * @param { number } percent 
+ */
+function percTOpix(percent, reference) {
+    return (percent / 100) * reference;
 }
