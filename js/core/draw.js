@@ -32,3 +32,11 @@ var gameArea = {
 function percTOpix(percent, reference) {
     return (percent / 100) * reference;
 }
+
+function Random(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    // var zahl = Math.random() % (max-min+1);
+    var zahl = Math.floor(Math.random() * (max - min + 1)) + min;
+    return zahl;
+}

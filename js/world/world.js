@@ -36,10 +36,16 @@ class world {
                     }
                     if (player.x > bound.left && player.x < bound.right) {
                         if (player.y > bound.up && player.y < bound.down) {
-                            player.collide(obj); // eventually destroy obj
-                            obj.collide(player); // eventually do something to player
+                            if (obj.life > 0 && typeof obj.life == "number") {
+                                // enter fight-mode
+                                ret = obj;
+                            } else {
+                                // "normal"
+                                player.collide(obj); // eventually destroy obj
+                                obj.collide(player); // eventually do something to player
+                            }
                             // if you cannot walk on the object -> go back to previous position + seal movement
-                            if (!obj.begehbar) {
+                            if (!obj.begehbar && typeof ret != "object") {
                                 player.x = oldX;
                                 player.y = oldY;
                                 ret = true
