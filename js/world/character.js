@@ -69,11 +69,23 @@ class Player extends Character {
         this.speed = 1; // 1%
         this.blick_richtung_rechts = true;
         this.init();
+
+        // attacks / actions for the pokemon-style fight
+        this.actions = {
+            slash : () => {},
+            sleep : () => {},
+            nothing : () => { return "This is a placeholder. Nothing happend."; },
+            nothing : () => { return "This is a placeholder. Nothing happend."; },
+        }
     }
     slash() {
+        clearInterval(this.anim);
         let arr = this.getAssets("slash");
         this.isAttacking = true;
-        let resetAtt = () => { this.isAttacking = false; }
+        let resetAtt = () => {
+            this.isAttacking = false;
+            this.anim = this.init();
+        }
         this.anim = animate_once(this, arr, this.animrate, resetAtt);
     }
     /**
@@ -112,5 +124,13 @@ class Slime extends Character {
         this.animrate = 100;
         this.blick_richtung_rechts = true;
         this.init();
+
+        // attacks / actions for the pokemon-style fight
+        this.actions = {
+            splash : () => { return "Slime used \"Splash\". Nothing happend."; },
+            littlejumg : () => {},
+            jump : () => {},
+            bigjump : () => {},
+        }
     }
 }

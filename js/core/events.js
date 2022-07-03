@@ -7,6 +7,12 @@ class MyEvent {
         this.upPressed = false;
         this.downPressed = false;
         this.enterPressed = false;
+
+        this.onePressed = false;
+        this.twoPressed = false;
+        this.threePressed = false;
+        this.fourPressed = false;
+        this.fivePressed = false;
     }
     keyUpHandler(e) {
         if (e.key == "d" || e.key == "Right" || e.key == "ArrowRight") {
@@ -20,6 +26,18 @@ class MyEvent {
         } else if (e.key == "Enter") {
             this.enterPressed = false;
         }
+        // numbers
+        else if (e.key == "1") {
+            this.onePressed = false;
+        } else if (e.key == "2") {
+            this.twoPressed = false;
+        } else if (e.key == "3") {
+            this.threePressed = false;
+        } else if (e.key == "4") {
+            this.fourPressed = false;
+        } else if (e.key == "5") {
+            this.fivePressed = false;
+        }
     }
     keyDownHandler(e) {
         if (e.key == "d" || e.key == "Right" || e.key == "ArrowRight") {
@@ -32,6 +50,18 @@ class MyEvent {
             this.downPressed = true;
         } else if (e.key == "Enter") {
             this.enterPressed = true;
+        }
+        // numbers
+        else if (e.key == "1") {
+            this.onePressed = true;
+        } else if (e.key == "2") {
+            this.twoPressed = true;
+        } else if (e.key == "3") {
+            this.threePressed = true;
+        } else if (e.key == "4") {
+            this.fourPressed = true;
+        } else if (e.key == "5") {
+            this.fivePressed = true;
         }
     }
     start() {
