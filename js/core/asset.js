@@ -204,6 +204,17 @@ const assetMap = {
         this.mystic_woods.tilesets.plains.add("hill horizontal left", 2, 8);
         this.mystic_woods.tilesets.plains.add("hill horizontal middle", 3, 8);
         this.mystic_woods.tilesets.plains.add("hill horizontal right", 4, 8);
+
+        // particles
+        this.mystic_woods.particles.dust_particles_01.add("big", 1, 1);
+        this.mystic_woods.particles.dust_particles_01.add("norm", 1, 1);
+        this.mystic_woods.particles.dust_particles_01.add("small", 1, 1);
+
+        // water_decoration
+        this.mystic_woods.tilesets.water_decorations.add("waterlily", 1, 2);
+        this.mystic_woods.tilesets.water_decorations.add("bubble 1", 4, 1);
+        this.mystic_woods.tilesets.water_decorations.add("bubble 2", 5, 1);
+        this.mystic_woods.tilesets.water_decorations.add("leaf", 6, 2);
     },
     mystic_woods: {
         characters: {
@@ -243,12 +254,16 @@ const assetMap = {
         },
         objects: {
             chest_01: new assetMapPart("assets/mystic_woods/objects/chest_01.png", 4, 1, 64, 16),
-
+            
+        },
+        particles: {
+            dust_particles_01: new assetMapPart("assets/mystic_woods/particles/dust_particles_01.png", 4, 4, 48, 12),
         },
         tilesets: {
             decor_8x8: new assetMapPart("asset/mystic_woods/tilesets/decor_8x8.png", 4, 4, 32, 32),
             decor_16x16: new assetMapPart("asset/mystic_woods/tilesets/decor_16x16.png", 4, 5, 64, 80),
             fences: new assetMapPart("asset/mystic_woods/tilesets/fences.png", 4, 4, 64, 64),
+            water_decorations: new assetMapPart("asset/mystic_woods/tilesets/water_decorations.png", 6, 2, 96, 32),
             floors: {
                 wooden: new assetMapPart("asset/mystic_woods/tilesets/floors/wooden.png", 1, 1, 16, 16),
                 grass: new assetMapPart("asset/mystic_woods/tilesets/floors/grass.png", 1, 1, 16, 16),
