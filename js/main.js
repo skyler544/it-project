@@ -3,6 +3,7 @@ $(document).ready(main);
 
 function main() {
     assetMap.init();
+    var game_over = false;
     var level_cleared = false;
     var level_num = 1;
     w = eval("level" + level_num + "()");
@@ -65,10 +66,9 @@ function main() {
         if (coll_res == "clear") {
             next_level();
         } else if (typeof coll_res == "object") {
-            console.log(typeof coll_res);
             clearInterval(intervall);
-            ev.end();
             if (player.isMoving) { player.move_end(); }
+            ev.end();
             pokemon_fight(player, coll_res, loadWorld);
         } else if (!coll_res) { // don't move, when a collision occurs
             oldX = player.x;
