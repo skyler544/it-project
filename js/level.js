@@ -218,10 +218,20 @@ function level2() {
     // draw the background
     rectangle("grass", "dirt", true, 0, 0, cols - 1, rows - 1);
 
+    // draw decorations
+    for (i = 0; i < 15; i++) {
+        let x = Random(1, 19);
+        let y = Random(1, 12);
+        let variant = Random(1, 4)
+
+        w.add(new Decor_16x16("dirt " + variant, x, y))
+
+    }
+
     // draw some hills as obstacles
     rectangle("hill", "hill", false, 2, 5, 4, 4);
     rectangle("hill", "hill", false, 8, 2, 1, 9);
-    rectangle("hill", "hill", false, 12, 1, 5, 1);
+    rectangle("hill", "hill", false, 12, 1, 5, 2);
 
     return w;
 }
