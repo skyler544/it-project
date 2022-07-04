@@ -142,7 +142,7 @@ class Plains_Terrain extends Floor {
      */
     constructor(name, x, y) {
         let map = assetMap.mystic_woods.tilesets.plains;
-        super("asset", new asset(map, name));
+        super(name, x, y, map);
     }
 }
 

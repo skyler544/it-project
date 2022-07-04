@@ -86,8 +86,8 @@ function level1() {
         let other = w.at(trueX, trueY);
         other.forEach(
             /**
-             * 
-             * @param { world_object } obj 
+             *
+             * @param { world_object } obj
              */
             (obj) => {
                 if (!obj.begehbar) { possible = false; console.log(obj); }
@@ -112,9 +112,31 @@ function level2() {
     const w = new world();
 
     // draw a background
-    for (let j = 0; j < 13; j++) {
-        for (let i = 0; i < 20; i++) {
-            let bg = new Grass_Floor(i, j);
+    let cols = 20;
+    let rows = 13;
+    for (let j = 0; j < rows; j++) {
+        for (let i = 0; i < cols; i++) {
+            let bg;
+            if (j == 0 && i == 0) {
+                bg = new Plains_Terrain("grass corner top left", i, j);
+            } else if (i == cols - 1 && j == 0) {
+                bg = new Plains_Terrain("grass corner top right", i, j);
+            } else if (j == rows - 1 && i == 0) {
+                bg = new Plains_Terrain("grass corner bottom left", i, j);
+            } else if (j == rows - 1 && i == cols - 1) {
+                bg = new Plains_Terrain("grass corner bottom right", i, j);
+            } else if (j == 0) {
+                bg = new Plains_Terrain("grass top", i, j);
+            } else if (j == rows - 1) {
+                bg = new Plains_Terrain("grass bottom", i, j);
+            } else if (i == 0) {
+                bg = new Plains_Terrain("grass left", i, j);
+            } else if (i == cols - 1) {
+                bg = new Plains_Terrain("grass right", i, j);
+            } else {
+                bg = new Plains_Terrain("dirt", i, j);
+            }
+            // console.log(bg);
             w.add(bg);
         }
     }
@@ -175,7 +197,7 @@ function level2() {
         w.add(new Plains_Terrain("hill horizontal right", 4, 8));
     }
 
-    reference();
+    // reference();
 
     return w;
 }
