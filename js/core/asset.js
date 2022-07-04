@@ -151,6 +151,59 @@ const assetMap = {
         this.mystic_woods.characters.slime.add(23, 3, 5);
         this.mystic_woods.characters.slime.add(24, 4, 5);
         this.mystic_woods.characters.slime.add(25, 5, 5);
+
+        // plains
+        this.mystic_woods.tilesets.plains.add("grass vertical top", 1, 1);
+        this.mystic_woods.tilesets.plains.add("grass corner top left", 2, 1);
+        this.mystic_woods.tilesets.plains.add("grass top", 3, 1);
+        this.mystic_woods.tilesets.plains.add("grass corner top right", 4, 1);
+        this.mystic_woods.tilesets.plains.add("dirt grass spot right bottom", 5, 1);
+        this.mystic_woods.tilesets.plains.add("dirt grass spot left bottom", 6, 1);
+
+        this.mystic_woods.tilesets.plains.add("grass vertical middle", 1, 2);
+        this.mystic_woods.tilesets.plains.add("grass left", 2, 2);
+        this.mystic_woods.tilesets.plains.add("dirt", 3, 2);
+        this.mystic_woods.tilesets.plains.add("grass right", 4, 2);
+        this.mystic_woods.tilesets.plains.add("dirt grass spot right top", 5, 2);
+        this.mystic_woods.tilesets.plains.add("dirt grass spot left top", 6, 2);
+
+        this.mystic_woods.tilesets.plains.add("grass vertical bottom", 1, 3);
+        this.mystic_woods.tilesets.plains.add("grass corner bottom left", 2, 3);
+        this.mystic_woods.tilesets.plains.add("grass bottom", 3, 3);
+        this.mystic_woods.tilesets.plains.add("grass corner bottom right", 4, 3);
+        this.mystic_woods.tilesets.plains.add("dirt grass double spot left", 5, 3);
+        this.mystic_woods.tilesets.plains.add("dirt grass double spot right", 6, 3);
+
+        this.mystic_woods.tilesets.plains.add("grass spot", 1, 4);
+        this.mystic_woods.tilesets.plains.add("grass horizontal left", 2, 4);
+        this.mystic_woods.tilesets.plains.add("grass horizonal middle", 3, 4);
+        this.mystic_woods.tilesets.plains.add("grass horizontal right", 4, 4);
+
+        this.mystic_woods.tilesets.plains.add("hill vertical top", 1, 5);
+        this.mystic_woods.tilesets.plains.add("hill top left", 2, 5);
+        this.mystic_woods.tilesets.plains.add("hill top", 3, 5);
+        this.mystic_woods.tilesets.plains.add("hill top right", 4, 5);
+        this.mystic_woods.tilesets.plains.add("grass rock right bottom", 5, 5);
+        this.mystic_woods.tilesets.plains.add("grass rock left bottom", 6, 5);
+
+        this.mystic_woods.tilesets.plains.add("hill vertical middle", 1, 6);
+        this.mystic_woods.tilesets.plains.add("hill left", 2, 6);
+        this.mystic_woods.tilesets.plains.add("hill", 3, 6);
+        this.mystic_woods.tilesets.plains.add("hill right", 4, 6);
+        this.mystic_woods.tilesets.plains.add("grass rock right top", 5, 6);
+        this.mystic_woods.tilesets.plains.add("grass rock left top", 6, 6);
+
+        this.mystic_woods.tilesets.plains.add("hill vertical bottom", 1, 7);
+        this.mystic_woods.tilesets.plains.add("hill corner bottom left", 2, 7);
+        this.mystic_woods.tilesets.plains.add("hill middle", 3, 7);
+        this.mystic_woods.tilesets.plains.add("hill corner bottom right", 4, 7);
+        this.mystic_woods.tilesets.plains.add("grass rock double spot left", 5, 7);
+        this.mystic_woods.tilesets.plains.add("grass rock double spot right", 6, 7);
+
+        this.mystic_woods.tilesets.plains.add("hill spot", 1, 8);
+        this.mystic_woods.tilesets.plains.add("hill horizontal left", 2, 8);
+        this.mystic_woods.tilesets.plains.add("hill horizontal middle", 3, 8);
+        this.mystic_woods.tilesets.plains.add("hill horizontal right", 4, 8);
     },
     mystic_woods: {
         characters: {
@@ -246,6 +299,7 @@ const assetMap = {
                 },
                 wooden_door_b: new assetMapPart("asset/mystic_woods/tilesets/walls/wooden_door_b.png", 2, 1, 32, 16),
                 wooden_door: new assetMapPart("asset/mystic_woods/tilesets/walls/wooden_door.png", 2, 1, 32, 16),
+                plains: new assetMapPart("asset/mystic_woods/tilesets/plains.png", 6, 8, 96, 128),
             }
         }
     }
