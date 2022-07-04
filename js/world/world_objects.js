@@ -101,8 +101,8 @@ class Wooden_Door extends world_object {
         else if (name == "open") {
             this.begehbar = true;
             /**
-             * 
-             * @param { world_object } other 
+             *
+             * @param { world_object } other
              */
             this.collide = (other) => {
                 // teleport to start - used it to jump to next level
@@ -135,8 +135,8 @@ class Wooden_Door_B extends world_object {
         else if (name == "open") {
             this.begehbar = true;
             /**
-             * 
-             * @param { world_object } other 
+             *
+             * @param { world_object } other
              */
             this.collide = (other) => {
                 // teleport to start - used it to jump to next level
@@ -147,8 +147,9 @@ class Wooden_Door_B extends world_object {
         }
         this.speed = 0;
     }
+}
 
-    class Plains_Terrain extends world_object {
+class Plains_Terrain extends world_object {
     /**
      *
      * @param { number } x
@@ -166,4 +167,3 @@ class Wooden_Door_B extends world_object {
         this.begehbar = true;
         this.speed = 0;
     }
-}
