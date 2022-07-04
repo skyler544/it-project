@@ -154,9 +154,9 @@ const assetMap = {
 
         // plains
         this.mystic_woods.tilesets.plains.add("grass vertical top", 1, 1);
-        this.mystic_woods.tilesets.plains.add("grass corner top left", 2, 1);
+        this.mystic_woods.tilesets.plains.add("grass top left", 2, 1);
         this.mystic_woods.tilesets.plains.add("grass top", 3, 1);
-        this.mystic_woods.tilesets.plains.add("grass corner top right", 4, 1);
+        this.mystic_woods.tilesets.plains.add("grass top right", 4, 1);
         this.mystic_woods.tilesets.plains.add("dirt grass spot right bottom", 5, 1);
         this.mystic_woods.tilesets.plains.add("dirt grass spot left bottom", 6, 1);
 
@@ -168,9 +168,9 @@ const assetMap = {
         this.mystic_woods.tilesets.plains.add("dirt grass spot left top", 6, 2);
 
         this.mystic_woods.tilesets.plains.add("grass vertical bottom", 1, 3);
-        this.mystic_woods.tilesets.plains.add("grass corner bottom left", 2, 3);
+        this.mystic_woods.tilesets.plains.add("grass bottom left", 2, 3);
         this.mystic_woods.tilesets.plains.add("grass bottom", 3, 3);
-        this.mystic_woods.tilesets.plains.add("grass corner bottom right", 4, 3);
+        this.mystic_woods.tilesets.plains.add("grass bottom right", 4, 3);
         this.mystic_woods.tilesets.plains.add("dirt grass double spot left", 5, 3);
         this.mystic_woods.tilesets.plains.add("dirt grass double spot right", 6, 3);
 
@@ -194,9 +194,9 @@ const assetMap = {
         this.mystic_woods.tilesets.plains.add("grass rock left top", 6, 6);
 
         this.mystic_woods.tilesets.plains.add("hill vertical bottom", 1, 7);
-        this.mystic_woods.tilesets.plains.add("hill corner bottom left", 2, 7);
+        this.mystic_woods.tilesets.plains.add("hill bottom left", 2, 7);
         this.mystic_woods.tilesets.plains.add("hill middle", 3, 7);
-        this.mystic_woods.tilesets.plains.add("hill corner bottom right", 4, 7);
+        this.mystic_woods.tilesets.plains.add("hill bottom right", 4, 7);
         this.mystic_woods.tilesets.plains.add("grass rock double spot left", 5, 7);
         this.mystic_woods.tilesets.plains.add("grass rock double spot right", 6, 7);
 
