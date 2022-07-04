@@ -233,5 +233,28 @@ function level2() {
     rectangle("hill", "hill", false, 8, 2, 1, 9);
     rectangle("hill", "hill", false, 12, 1, 5, 2);
 
+    // add slimes to fight
+    for (i = 0; i < 5; i++) {
+        let x = Random(0, 19);
+        let y = Random(0, 12);
+        let slime = new Slime(x, y);
+
+        let possible = true;
+        let trueX = gameArea.percentTOpixel(x * SQUARE_SIDE_LEN);
+        let trueY = gameArea.percentTOpixel(y * SQUARE_SIDE_LEN);
+        let other = w.at(trueX, trueY);
+        other.forEach(
+            /**
+             *
+             * @param { world_object } obj
+             */
+            (obj) => {
+                if (!obj.begehbar) { possible = false; }
+            });
+        if (possible) {
+            w.add(slime);
+        } else { i--; }
+    }
+
     return w;
 }
