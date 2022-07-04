@@ -75,6 +75,29 @@ function level1() {
     let door2 = new Wooden_Door_B("open", 5, 4);
     w.add(door2);
 
+    // some decorations
+    for (i = 0; i < 15; i++) {
+        let x = Random(3, 16);
+        let y = Random(2, 10);
+
+        let possible = true;
+        let trueX = gameArea.percentTOpixel(x * SQUARE_SIDE_LEN);
+        let trueY = gameArea.percentTOpixel(y * SQUARE_SIDE_LEN);
+        let other = w.at(trueX, trueY);
+        other.forEach(
+            /**
+             * 
+             * @param { world_object } obj 
+             */
+            (obj) => {
+                if (!obj.begehbar) { possible = false; console.log(obj); }
+            });
+        if (possible) {
+            let decor1 = new Decor_16x16("grass 1", x, y);
+            w.add(decor1);
+        } else { i--; }
+    }
+
     for (i = 0; i < 5; i++) {
         let x = Random(0, 19);
         let y = Random(0, 12);

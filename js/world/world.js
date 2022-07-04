@@ -13,6 +13,19 @@ class world {
         for (const comp in this.comps) { this.comps[comp].update(); }
     }
     /**
+     * return an array of world_objects at the given position
+     * @param { number } x 
+     * @param { number } y 
+     * @return { world_object[] }
+     */
+    at(x, y) {
+        let arr = [];
+        for (const comp in this.comps) {
+            if (this.comps[comp].x == x && this.comps[comp].y == y) { arr.push(this.comps[comp]); }
+        }
+        return arr;
+    }
+    /**
      * check for collisions with other world_objects
      * @param { world_object } player
      * @param { number } oldX

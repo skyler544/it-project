@@ -19,7 +19,27 @@ class world_object extends component {
     destroy(callback) { console.log("I was destroyed!"); callback(); } // when destroyed
 }
 
-class Wall extends world_object {
+class Floor extends world_object {
+    /**
+     *
+     * @param { string } name
+     * @param { number } x
+     * @param { number } y
+     * @param { assetMapPart } map
+     */
+    constructor(name, x, y, map) {
+        super("asset", new asset(map, name));
+        this.x = x * SQUARE_SIDE_LEN;
+        this.y = y * SQUARE_SIDE_LEN;
+        this.percentTOpixel();
+
+        this.life = -1; // indestructible
+        this.begehbar = true; // you can walk on it
+        this.speed = 0;
+    }
+}
+
+class Wall extends Floor {
     /**
      *
      * @param { string } name
@@ -28,19 +48,13 @@ class Wall extends world_object {
      */
     constructor(name, x, y) {
         let map = assetMap.mystic_woods.tilesets.walls.walls;
-        super("asset", new asset(map, name));
-        this.x = x * SQUARE_SIDE_LEN;
-        this.y = y * SQUARE_SIDE_LEN;
-        this.percentTOpixel();
+        super(name, x, y, map);
 
-        this.life = -1; // indestructible
         this.begehbar = false;
-        this.speed = 0;
     }
-    // collide does not need to do anything
 }
 
-class Grass_Floor extends world_object {
+class Grass_Floor extends Floor {
     /**
      *
      * @param { number } x
@@ -48,18 +62,11 @@ class Grass_Floor extends world_object {
      */
     constructor(x, y) {
         let map = assetMap.mystic_woods.tilesets.floors.grass;
-        super("asset", new asset(map, "grass"));
-        this.x = x * SQUARE_SIDE_LEN;
-        this.y = y * SQUARE_SIDE_LEN;
-        this.percentTOpixel();
-
-        this.life = -1; // indestructible
-        this.begehbar = true; // you can walk on it
-        this.speed = 0;
+        super("grass", x, y, map);
     }
 }
 
-class Wooden_Floor extends world_object {
+class Wooden_Floor extends Floor {
     /**
      *
      * @param { number } x
@@ -67,20 +74,11 @@ class Wooden_Floor extends world_object {
      */
     constructor(x, y) {
         let map = assetMap.mystic_woods.tilesets.floors.wooden;
-        super("asset", new asset(map, "wooden"));
-        this.height = SQUARE_SIDE_LEN;
-        this.width = SQUARE_SIDE_LEN;
-        this.x = x * SQUARE_SIDE_LEN;
-        this.y = y * SQUARE_SIDE_LEN;
-        this.percentTOpixel();
-
-        this.life = -1; // indestructible
-        this.begehbar = true; // you can walk on it
-        this.speed = 0;
+        super("wooden", x, y, map);
     }
 }
 
-class Wooden_Door extends world_object {
+class Wooden_Door extends Floor {
     /**
      *
      * @param { string } name
@@ -89,14 +87,8 @@ class Wooden_Door extends world_object {
      */
     constructor(name, x, y) {
         let map = assetMap.mystic_woods.tilesets.walls.wooden_door;
-        super("asset", new asset(map, name));
-        this.height = SQUARE_SIDE_LEN;
-        this.width = SQUARE_SIDE_LEN;
-        this.x = x * SQUARE_SIDE_LEN;
-        this.y = y * SQUARE_SIDE_LEN;
-        this.percentTOpixel();
+        super(name, x, y, map);
 
-        this.life = -1; // indestructible
         if (name == "closed") { this.begehbar = false; }
         else if (name == "open") {
             this.begehbar = true;
@@ -110,11 +102,10 @@ class Wooden_Door extends world_object {
                 other.y = 0;
             }
         }
-        this.speed = 0;
     }
 }
 
-class Wooden_Door_B extends world_object {
+class Wooden_Door_B extends Floor {
     /**
      *
      * @param { string } name
@@ -123,14 +114,8 @@ class Wooden_Door_B extends world_object {
      */
     constructor(name, x, y) {
         let map = assetMap.mystic_woods.tilesets.walls.wooden_door_b;
-        super("asset", new asset(map, name));
-        this.height = SQUARE_SIDE_LEN;
-        this.width = SQUARE_SIDE_LEN;
-        this.x = x * SQUARE_SIDE_LEN;
-        this.y = y * SQUARE_SIDE_LEN;
-        this.percentTOpixel();
+        super(name, x, y, map);
 
-        this.life = -1; // indestructible
         if (name == "closed") { this.begehbar = false; }
         else if (name == "open") {
             this.begehbar = true;
@@ -145,11 +130,10 @@ class Wooden_Door_B extends world_object {
                 return "clear";
             }
         }
-        this.speed = 0;
     }
 }
 
-class Plains_Terrain extends world_object {
+class Plains_Terrain extends Floor {
     /**
      *
      * @param { string } name
@@ -159,10 +143,25 @@ class Plains_Terrain extends world_object {
     constructor(name, x, y) {
         let map = assetMap.mystic_woods.tilesets.plains;
         super("asset", new asset(map, name));
-        this.x = x * SQUARE_SIDE_LEN;
-        this.y = y * SQUARE_SIDE_LEN;
-        this.percentTOpixel();
+    }
+}
 
-        this.begehbar = true;
+class Decor_16x16 extends Floor {
+     constructor(name, x, y) {
+        let map = assetMap.mystic_woods.tilesets.decor_16x16;
+        super(name, x, y, map);
+    }
+}
+
+class Decor_8x8 extends world_object {
+    /**
+     *
+     * @param { string } name
+     * @param { number } x
+     * @param { number } y
+     */
+     constructor(name, x, y) {
+        let map = assetMap.mystic_woods.tilesets.decor_8x8;
+        super(name, x, y, map);
     }
 }
