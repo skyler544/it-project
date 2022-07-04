@@ -232,6 +232,8 @@ function level2() {
     rectangle("hill", "hill", false, 2, 5, 4, 4);
     rectangle("hill", "hill", false, 8, 2, 1, 9);
     rectangle("hill", "hill", false, 12, 1, 5, 2);
+    rectangle("hill", "hill", false, 16, 7, 1, 3);
+
 
     // add slimes to fight
     for (i = 0; i < 5; i++) {
