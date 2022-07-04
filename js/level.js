@@ -1,3 +1,65 @@
+// this function should generalize drawing a rectangular terrain form
+// Usage: The function relies on uniform naming in the Plains_Terrain
+// object; this can/should be extended for other objects. Ideally, this
+// function can even be generalized again so that it works with any
+// world_object where it makes sense to draw it as a rectangle, and where
+// there are nine components: top right, top left, bottom right, bottom left,
+// top, bottom, right, left, and fill.
+let rectangle = function (type, fill, walkable, x, y, length, height, world) {
+    let objectList = [];
+
+    let tr = " top right";
+    let tl = " top left";
+    let br = " bottom right";
+    let bl = " bottom left";
+    let t = " top";
+    let b = " bottom";
+    let r = " right";
+    let l = " left";
+
+
+    for (let i = 0; i <= length; i++) {
+        for (let j = 0; j <= height; j++) {
+
+            // Draw the four corners
+            if (j == 0 && i == 0) {
+                objectList.push(new Plains_Terrain(type + tl, x, y));
+            } else if (i == length && j == 0) {
+                objectList.push(new Plains_Terrain(type + tr, x + length, y));
+            } else if (j == height && i == 0) {
+                objectList.push(new Plains_Terrain(type + bl, x, y + height));
+            } else if (j == height && i == length) {
+                objectList.push(new Plains_Terrain(type + br, x + length, y + height));
+            }
+
+            // Draw the borders and the interior
+            else if (j == 0) {
+                objectList.push(new Plains_Terrain(type + t, x + i, y + j));
+            } else if (j == height) {
+                objectList.push(new Plains_Terrain(type + b, x + i, y + j));
+            } else if (i == 0) {
+                objectList.push(new Plains_Terrain(type + l, x + i, y + j));
+            } else if (i == length) {
+                objectList.push(new Plains_Terrain(type + r, x + i, y + j));
+            } else {
+                if (fill == "grass") {
+                    // special case, since this sprite is not in the
+                    // Plains_Terrain object
+                    objectList.push(new Grass_Floor(x + i, y + j))
+                } else {
+                    objectList.push(new Plains_Terrain(fill, x + i, y + j));
+                }
+            }
+
+        }
+    }
+
+    for (cell of objectList) {
+        cell.begehbar = walkable;
+        world.add(cell);
+    }
+}
+
 /**
  *
  * @param { Function } next
@@ -96,67 +158,6 @@ function level2() {
     let cols = 20;
     let rows = 13;
 
-    // this function should generalize drawing a rectangular terrain form
-    // Usage: The function relies on uniform naming in the Plains_Terrain
-    // object; this can/should be extended for other objects. Ideally, this
-    // function can even be generalized again so that it works with any
-    // world_object where it makes sense to draw it as a rectangle, and where
-    // there are nine components: top right, top left, bottom right, bottom left,
-    // top, bottom, right, left, and fill.
-    let rectangle = function (type, fill, walkable, x, y, length, height) {
-        let objectList = [];
-
-        let tr = " top right";
-        let tl = " top left";
-        let br = " bottom right";
-        let bl = " bottom left";
-        let t = " top";
-        let b = " bottom";
-        let r = " right";
-        let l = " left";
-
-
-        for (let i = 0; i <= length; i++) {
-            for (let j = 0; j <= height; j++) {
-
-                // Draw the four corners
-                if (j == 0 && i == 0) {
-                    objectList.push(new Plains_Terrain(type + tl, x, y));
-                } else if (i == length && j == 0) {
-                    objectList.push(new Plains_Terrain(type + tr, x + length, y));
-                } else if (j == height && i == 0) {
-                    objectList.push(new Plains_Terrain(type + bl, x, y + height));
-                } else if (j == height && i == length) {
-                    objectList.push(new Plains_Terrain(type + br, x + length, y + height));
-                }
-
-                // Draw the borders and the interior
-                else if (j == 0) {
-                    objectList.push(new Plains_Terrain(type + t, x + i, y + j));
-                } else if (j == height) {
-                    objectList.push(new Plains_Terrain(type + b, x + i, y + j));
-                } else if (i == 0) {
-                    objectList.push(new Plains_Terrain(type + l, x + i, y + j));
-                } else if (i == length) {
-                    objectList.push(new Plains_Terrain(type + r, x + i, y + j));
-                } else {
-                    if (fill == "grass") {
-                        // special case, since this sprite is not in the
-                        // Plains_Terrain object
-                        objectList.push(new Grass_Floor(x + i, y + j))
-                    } else {
-                        objectList.push(new Plains_Terrain(fill, x + i, y + j));
-                    }
-                }
-
-            }
-        }
-
-        for (cell of objectList) {
-            cell.begehbar = walkable;
-            w.add(cell);
-        }
-    }
 
 
     // reference objects
@@ -213,9 +214,9 @@ function level2() {
         w.add(new Plains_Terrain("hill horizontal middle", 3, 8));
         w.add(new Plains_Terrain("hill horizontal right", 4, 8));
     }
-    
+
     // draw the background
-    rectangle("grass", "dirt", true, 0, 0, cols - 1, rows - 1);
+    rectangle("grass", "dirt", true, 0, 0, cols - 1, rows - 1, w);
 
     // draw decorations
     for (i = 0; i < 15; i++) {
@@ -228,10 +229,10 @@ function level2() {
     }
 
     // draw some hills as obstacles
-    rectangle("hill", "hill", false, 2, 5, 4, 4);
-    rectangle("hill", "hill", false, 8, 2, 1, 9);
-    rectangle("hill", "hill", false, 12, 1, 5, 2);
-    rectangle("hill", "hill", false, 16, 7, 1, 3);
+    rectangle("hill", "hill", false, 2, 5, 4, 4, w);
+    rectangle("hill", "hill", false, 8, 2, 1, 9, w);
+    rectangle("hill", "hill", false, 12, 1, 5, 2, w);
+    rectangle("hill", "hill", false, 16, 7, 1, 3, w);
 
 
     // add slimes to fight
