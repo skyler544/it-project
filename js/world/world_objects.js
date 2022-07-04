@@ -167,3 +167,4 @@ class Plains_Terrain extends world_object {
         this.begehbar = true;
         this.speed = 0;
     }
+}
