@@ -213,8 +213,7 @@ function level2() {
         w.add(new Plains_Terrain("hill horizontal middle", 3, 8));
         w.add(new Plains_Terrain("hill horizontal right", 4, 8));
     }
-
-
+    
     // draw the background
     rectangle("grass", "dirt", true, 0, 0, cols - 1, rows - 1);
 
@@ -257,6 +256,7 @@ function level2() {
             w.add(slime);
         } else { i--; }
     }
+
 
     return w;
 }
