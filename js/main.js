@@ -21,6 +21,13 @@ function main() {
     const speed = 1;
 
     let movePlayer = function () {
+
+        // boolean variables for boundary checking
+        let leftBorder = player.x + speed < 0;
+        let rightBorder = player.x + speed > gameArea.canvas.width - player.width;
+        let bottomBorder = player.y + speed > gameArea.canvas.height - player.height;
+        let topBorder = player.y + speed < 0;
+
         // if player any arrow key is pressed -> player is moving (start movement animation)
         if (ev.downPressed || ev.upPressed || ev.leftPressed || ev.rightPressed) {
             player.move_start(); // does nothing if player.isMoving is already true
@@ -28,19 +35,22 @@ function main() {
             // if no arrow key is pressed -> player stopped -> return to default animation
             player.move_end(); // does nothing if player isn't moving
         }
-        if (ev.rightPressed) {
+
+        // if the button is pressed and the move would not
+        // take the player out of bounds, then move the player.
+        if (ev.rightPressed && !rightBorder) {
             player.move(speed, 0);
-        } if (ev.leftPressed) {
+        } if (ev.leftPressed && !leftBorder) {
             player.move(-speed, 0);
-        } if (ev.upPressed) {
+        } if (ev.upPressed && !topBorder) {
             player.move(0, -speed);
-        } if (ev.downPressed) {
+        } if (ev.downPressed && !bottomBorder) {
             player.move(0, speed);
         }
     }
 
     var intervall;
-    let loadWorld = function() {
+    let loadWorld = function () {
         ev.start();
         intervall = setInterval(repeat, 60);
     }
