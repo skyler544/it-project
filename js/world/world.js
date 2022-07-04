@@ -49,8 +49,10 @@ class world {
                     }
                     if (player.x > bound.left && player.x < bound.right) {
                         if (player.y > bound.up && player.y < bound.down) {
-                            if (obj.life > 0 && typeof obj.life == "number") {
+                            if (obj.life > -1 && typeof obj.life == "number") {
                                 // enter fight-mode
+                                player.x = oldX;
+                                player.y = oldY;
                                 ret = obj;
                             } else {
                                 // "normal"
