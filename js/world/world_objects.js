@@ -142,6 +142,7 @@ class Wooden_Door_B extends world_object {
                 // teleport to start - used it to jump to next level
                 other.x = 0;
                 other.y = 0;
+                return "clear";
             }
         }
         this.speed = 0;
