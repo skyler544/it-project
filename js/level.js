@@ -127,9 +127,9 @@ function level2() {
     // reference objects
     let reference = function () {
         w.add(new Plains_Terrain("grass vertical top", 1, 1));
-        w.add(new Plains_Terrain("grass corner top left", 2, 1));
+        w.add(new Plains_Terrain("grass top left", 2, 1));
         w.add(new Plains_Terrain("grass top", 3, 1));
-        w.add(new Plains_Terrain("grass corner top right", 4, 1));
+        w.add(new Plains_Terrain("grass top right", 4, 1));
         w.add(new Plains_Terrain("dirt grass spot right bottom", 5, 1));
         w.add(new Plains_Terrain("dirt grass spot left bottom", 6, 1));
 
@@ -141,9 +141,9 @@ function level2() {
         w.add(new Plains_Terrain("dirt grass spot left top", 6, 2));
 
         w.add(new Plains_Terrain("grass vertical bottom", 1, 3));
-        w.add(new Plains_Terrain("grass corner bottom left", 2, 3));
+        w.add(new Plains_Terrain("grass bottom left", 2, 3));
         w.add(new Plains_Terrain("grass bottom", 3, 3));
-        w.add(new Plains_Terrain("grass corner bottom right", 4, 3));
+        w.add(new Plains_Terrain("grass bottom right", 4, 3));
         w.add(new Plains_Terrain("dirt grass double spot left", 5, 3));
         w.add(new Plains_Terrain("dirt grass double spot right", 6, 3));
 
@@ -167,9 +167,9 @@ function level2() {
         w.add(new Plains_Terrain("grass rock left top", 6, 6));
 
         w.add(new Plains_Terrain("hill vertical bottom", 1, 7));
-        w.add(new Plains_Terrain("hill corner bottom left", 2, 7));
-        w.add(new Plains_Terrain("hill middle", 3, 7));
-        w.add(new Plains_Terrain("hill corner bottom right", 4, 7));
+        w.add(new Plains_Terrain("hill bottom left", 2, 7));
+        w.add(new Plains_Terrain("hill bottom", 3, 7));
+        w.add(new Plains_Terrain("hill bottom right", 4, 7));
         w.add(new Plains_Terrain("grass rock double spot left", 5, 7));
         w.add(new Plains_Terrain("grass rock double spot right", 6, 7));
 
@@ -179,7 +179,7 @@ function level2() {
         w.add(new Plains_Terrain("hill horizontal right", 4, 8));
     }
 
-    // reference();
+    reference();
 
     return w;
 }
