@@ -118,13 +118,13 @@ function level2() {
         for (let i = 0; i < cols; i++) {
             let bg;
             if (j == 0 && i == 0) {
-                bg = new Plains_Terrain("grass corner top left", i, j);
+                bg = new Plains_Terrain("grass top left", i, j);
             } else if (i == cols - 1 && j == 0) {
-                bg = new Plains_Terrain("grass corner top right", i, j);
+                bg = new Plains_Terrain("grass top right", i, j);
             } else if (j == rows - 1 && i == 0) {
-                bg = new Plains_Terrain("grass corner bottom left", i, j);
+                bg = new Plains_Terrain("grass bottom left", i, j);
             } else if (j == rows - 1 && i == cols - 1) {
-                bg = new Plains_Terrain("grass corner bottom right", i, j);
+                bg = new Plains_Terrain("grass bottom right", i, j);
             } else if (j == 0) {
                 bg = new Plains_Terrain("grass top", i, j);
             } else if (j == rows - 1) {
