@@ -195,7 +195,7 @@ const assetMap = {
 
         this.mystic_woods.tilesets.plains.add("hill vertical bottom", 1, 7);
         this.mystic_woods.tilesets.plains.add("hill bottom left", 2, 7);
-        this.mystic_woods.tilesets.plains.add("hill middle", 3, 7);
+        this.mystic_woods.tilesets.plains.add("hill bottom", 3, 7);
         this.mystic_woods.tilesets.plains.add("hill bottom right", 4, 7);
         this.mystic_woods.tilesets.plains.add("grass rock double spot left", 5, 7);
         this.mystic_woods.tilesets.plains.add("grass rock double spot right", 6, 7);
