@@ -42,10 +42,12 @@ class world {
                             } else {
                                 // "normal"
                                 player.collide(obj); // eventually destroy obj
-                                obj.collide(player); // eventually do something to player
+                                let cl = obj.collide(player); // eventually do something to player
+
+                                if (cl == "clear") { ret = cl; }
                             }
                             // if you cannot walk on the object -> go back to previous position + seal movement
-                            if (!obj.begehbar && typeof ret != "object") {
+                            if (!obj.begehbar && typeof ret == "boolean") {
                                 player.x = oldX;
                                 player.y = oldY;
                                 ret = true
