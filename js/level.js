@@ -90,7 +90,7 @@ function level1() {
              * @param { world_object } obj
              */
             (obj) => {
-                if (!obj.begehbar) { possible = false; console.log(obj); }
+                if (!obj.begehbar) { possible = false; }
             });
         if (possible) {
             let decor1 = new Decor_16x16("grass 1", x, y);

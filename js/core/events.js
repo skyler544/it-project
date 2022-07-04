@@ -13,6 +13,9 @@ class MyEvent {
         this.threePressed = false;
         this.fourPressed = false;
         this.fivePressed = false;
+
+        this.keydown_func = this.keyDownHandler.bind(this);
+        this.keyup_func = this.keyUpHandler.bind(this);
     }
     keyUpHandler(e) {
         if (e.key == "d" || e.key == "Right" || e.key == "ArrowRight") {
@@ -65,11 +68,20 @@ class MyEvent {
         }
     }
     start() {
-        document.addEventListener("keydown", this.keyDownHandler.bind(this), false);
-        document.addEventListener("keyup", this.keyUpHandler.bind(this), false);
+        // document.addEventListener("keydown", this.keyDownHandler.bind(this), false);
+        // document.addEventListener("keyup", this.keyUpHandler.bind(this), false);
+        document.addEventListener("keydown", this.keydown_func, false);
+        document.addEventListener("keyup", this.keyup_func, false);
     }
     end() {
-        document.removeEventListener("keydown", this.keyDownHandler.bind(this), false);
-        document.removeEventListener("keyup", this.keyUpHandler, false);
+        // document.removeEventListener("keydown", this.keyDownHandler.bind(this), false);
+        // document.removeEventListener("keyup", this.keyUpHandler.bind(this), false);
+        document.removeEventListener("keydown", this.keydown_func, false);
+        document.removeEventListener("keyup", this.keyup_func, false);
+        Object.keys(this).forEach((el) => {
+            if (el != "keydown_func" && el != "keyup_func") {
+                this[el] = false;
+            }
+        });
     }
 }

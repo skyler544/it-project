@@ -116,6 +116,14 @@ function pokemon_fight(player, enemy, callback) {
             else if (e.key == "2") { ac = 1; }
             else if (e.key == "3") { ac = 2; }
             if (ac != -1) {
+                // next action / turn / round
+                let next = (e) => {
+                    if (e.key == "Enter") {
+                        document.removeEventListener("keyup", next, false);
+                        text.value = options;
+                        document.addEventListener("keyup", doit, false);
+                    }
+                }
                 // player
                 action_names = Object.keys(player.actions);
                 let func = player.actions[action_names[ac]];
@@ -125,48 +133,53 @@ function pokemon_fight(player, enemy, callback) {
                 counterP.value = player.life.toString();
                 counterE.value = enemy.life.toString();
 
-                if (player.life <= 0) { text_to_display = "You lost!"; }
+                if (player.life <= 0) { text_to_display = "You lost!"; player.destroy(); }
                 else if (enemy.life <= 0) { text_to_display = "You won!"; enemy.destroy(); }
 
                 text.value = text_to_display + "\nPress Enter to continue.";
-                document.removeEventListener("keyup", doit, false);
+                // document.removeEventListener("keyup", doit, false);
 
-                if (player.life <= 0 || enemy.life <= 0) { cleared = true; return; }
+                if (player.life <= 0 || enemy.life <= 0) {
+                    document.removeEventListener("keyup", doit, false);
+                    document.removeEventListener("keyup", next, false);
+                    cleared = true;
+                    console.log("won");
+                    return;
+                }
 
                 // enemy
                 ac = Random(0, 3);
                 action_names = Object.keys(enemy.actions);
-                console.log(action_names, ac);
                 func = enemy.actions[action_names[ac]];
-                msg = func(enemy);
+                msg = func(player);
                 text_to_display += "\nEnemy used \"" + action_names[ac] + "\". " + msg;
 
                 counterP.value = player.life.toString();
                 counterE.value = enemy.life.toString();
 
-                if (player.life <= 0) { text_to_display = "You lost!"; }
+                if (player.life <= 0) { text_to_display = "You lost!"; player.destroy(); }
                 else if (enemy.life <= 0) { text_to_display = "You won!"; enemy.destroy(); }
 
                 text.value = text_to_display + "\nPress Enter to continue.";
                 document.removeEventListener("keyup", doit, false);
 
-                if (player.life <= 0 || enemy.life <= 0) { cleared = true; return; }
+                if (player.life <= 0 || enemy.life <= 0) {
+                    document.removeEventListener("keyup", next, false);
+                    cleared = true;
+                    return;
+                }
 
                 // next action / turn / round
-                let next = (e) => {
-                    if (e.key == "Enter") {
-                        document.removeEventListener("keyup", next, false);
-                        text.value = options;
-                        document.addEventListener("keyup", doit, false);
-                    }
-                }
                 document.addEventListener("keyup", next, false);
             }
         }
     }
 
-    let repeat = function () {
-        if (cleared) {
+    let clearing = false;
+    let end = (e) => {
+        if (e.key == "Enter") {
+            document.removeEventListener("keyup", end, false);
+
             clearInterval(intervall);
             player.x = old.player.x;
             player.y = old.player.y;
@@ -178,7 +191,17 @@ function pokemon_fight(player, enemy, callback) {
             enemy.width = old.enemy.width;
             enemy.height = old.enemy.height;
 
+            clearing = false;
+
             callback();
+        }
+    }
+
+    let repeat = function () {
+        if (cleared && !clearing) {
+            clearing = true;
+            // end({key: "Enter"});
+            document.addEventListener("keyup", end, false);
         } else {
             fw.print();
         }

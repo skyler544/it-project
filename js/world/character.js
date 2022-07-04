@@ -72,16 +72,8 @@ class Player extends Character {
 
         // attacks / actions for the pokemon-style fight
         this.actions = {
-            slash : (enemy) => { this.slash(); this.collide(enemy); return ""; },
-            sleep : (enemy) => {
-                this.isAttacking = true;
-                this.destroy(() => {
-                    this.anim = this.init();
-                    this.isAttacking = false;
-                    this.life += 1;
-                });
-                return "+1 life";
-            },
+            slash : (enemy) => { this.slash(); enemy.life -= 1; return ""; },
+            sleep : (enemy) => { this.sleep(); return "+1 life"; },
             nothing : (enemy) => { return "This is a placeholder. Nothing happend."; },
             nothing : (enemy) => { return "This is a placeholder. Nothing happend."; },
         }
@@ -94,7 +86,16 @@ class Player extends Character {
             this.isAttacking = false;
             this.anim = this.init();
         }
-        this.anim = animate_once(this, arr, this.animrate, resetAtt);
+        this.anim = animate_once(this, arr, this.animrate, resetAtt.bind(this));
+    }
+    sleep() {
+        this.isAttacking = true;
+        let callback = () => {
+            this.anim = this.init();
+            this.isAttacking = false;
+            this.life += 1;
+        }
+        this.destroy(callback);
     }
     /**
      * 
@@ -135,10 +136,40 @@ class Slime extends Character {
 
         // attacks / actions for the pokemon-style fight
         this.actions = {
-            splash : () => { return "Nothing happend."; },
-            littlejumg : () => { return ""; },
-            jump : () => { return ""; },
-            bigjump : () => { return ""; },
+            splash : (enemy) => { return "Nothing happend."; },
+            littlejump : (enemy) => { this.littlejump(); enemy.life -= 1; return "-1 lives"; },
+            jump : (enemy) => { this.jump(); enemy.life -= 2; return "-2 lives"; },
+            bigjump : (enemy) => { this.bigjump(); enemy.life -= 3; return "-3 lives"; },
         }
+    }
+    jump() {
+        clearInterval(this.anim);
+        let arr = this.getAssets("jump");
+        this.isAttacking = true;
+        let resetAtt = () => {
+            this.isAttacking = false;
+            this.anim = this.init();
+        }
+        this.anim = animate_once(this, arr, this.animrate, resetAtt.bind(this));
+    }
+    bigjump() {
+        clearInterval(this.anim);
+        let arr = this.getAssets("bigjump");
+        this.isAttacking = true;
+        let resetAtt = () => {
+            this.isAttacking = false;
+            this.anim = this.init();
+        }
+        this.anim = animate_once(this, arr, this.animrate, resetAtt.bind(this));
+    }
+    littlejump() {
+        clearInterval(this.anim);
+        let arr = this.getAssets("littlejump");
+        this.isAttacking = true;
+        let resetAtt = () => {
+            this.isAttacking = false;
+            this.anim = this.init();
+        }
+        this.anim = animate_once(this, arr, this.animrate, resetAtt.bind(this));
     }
 }
