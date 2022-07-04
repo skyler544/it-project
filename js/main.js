@@ -64,6 +64,7 @@ function main() {
         }
         let coll_res = w.check_collision(player, oldX, oldY);
         if (coll_res == "clear") {
+            console.log(coll_res);
             next_level();
         } else if (typeof coll_res == "object") {
             clearInterval(intervall);

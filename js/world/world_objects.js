@@ -153,7 +153,7 @@ class Decor_16x16 extends Floor {
     }
 }
 
-class Decor_8x8 extends world_object {
+class Decor_8x8 extends Floor {
     /**
      *
      * @param { string } name
@@ -162,6 +162,31 @@ class Decor_8x8 extends world_object {
      */
      constructor(name, x, y) {
         let map = assetMap.mystic_woods.tilesets.decor_8x8;
+        super(name, x, y, map);
+    }
+}
+
+class Dust_particles extends Floor {
+    /**
+     *
+     * @param { number } x
+     * @param { number } y
+     */
+     constructor(x, y) {
+        let map = assetMap.mystic_woods.particles.dust_particles_01;
+        super("dust_particles_01", x, y, map);
+    }
+}
+
+class Water_decorations extends Floor {
+    /**
+     *
+     * @param { string } name
+     * @param { number } x
+     * @param { number } y
+     */
+     constructor(name, x, y) {
+        let map = assetMap.mystic_woods.tilesets.water_decorations;
         super(name, x, y, map);
     }
 }

@@ -16,19 +16,15 @@ function level1() {
             } else {
                 BLOCK = new Grass_Floor(i, j);
             }
-
             w.add(BLOCK); // add the block to the world
         }
     }
 
-
-    let wall1 = new Wall("ecke oben links light", 4, 3);
-    w.add(wall1);
+    w.add(new Wall("ecke oben links light", 4, 3));
 
     let i = 0;
     for (i = 0; i < 4; i++) {
-        let wall2 = new Wall("little brick oben light", 5 + i, 3);
-        w.add(wall2);
+        w.add(new Wall("little brick oben light", 5 + i, 3));
         let wall4 = new Wall("einzelteil oben links light", 5 + i, 3);
         wall4.reverseY();
         w.add(wall4);
@@ -37,8 +33,7 @@ function level1() {
         w.add(wall5);
     }
 
-    let wall3 = new Wall("ecke oben rechts light", 5 + i, 3);
-    w.add(wall3);
+    w.add(new Wall("ecke oben rechts light", 5 + i, 3));
 
     let wall5 = new Wall("einzelteil oben links light", 5 + i, 3);
     wall5.reverseY();
@@ -53,27 +48,15 @@ function level1() {
     w.add(wall11);
 
     for (i = 0; i < 3; i++) {
-        let wall6 = new Wall("norm light", 4, 4 + i);
-        w.add(wall6);
+        w.add(new Wall("norm light", 4, 4 + i));
     }
 
-    let wall13 = new Wall("start oben links dark", 4, 6);
-    w.add(wall13);
-
-    let wall14 = new Wall("start oben dark", 5, 6);
-    w.add(wall14);
-
-    let wall15 = new Wall("start oben rechts dark", 6, 6);
-    w.add(wall15);
-
-    let door1 = new Wooden_Door("closed", 7, 6);
-    w.add(door1);
-
-    let wall23 = new Wall("start oben beide dark", 8, 6);
-    w.add(wall23);
-
-    let door2 = new Wooden_Door_B("open", 5, 4);
-    w.add(door2);
+    w.add(new Wall("start oben links dark", 4, 6));
+    w.add(new Wall("start oben dark", 5, 6));
+    w.add(new Wall("start oben rechts dark", 6, 6));
+    w.add(new Wooden_Door("closed", 7, 6));
+    w.add(new Wall("start oben beide dark", 8, 6));
+    w.add(new Wooden_Door_B("open", 5, 4));
 
     // some decorations
     for (i = 0; i < 15; i++) {
@@ -93,8 +76,7 @@ function level1() {
                 if (!obj.begehbar) { possible = false; }
             });
         if (possible) {
-            let decor1 = new Decor_16x16("grass 1", x, y);
-            w.add(decor1);
+            w.add(new Decor_16x16("grass 1", x, y));
         } else { i--; }
     }
 
@@ -169,11 +151,6 @@ function level2() {
 
             }
         }
-
-        objectList.push(new Plains_Terrain(type + tl, x, y));
-        objectList.push(new Plains_Terrain(type + tr, x + length, y));
-        objectList.push(new Plains_Terrain(type + bl, x, y + height));
-        objectList.push(new Plains_Terrain(type + br, x + length, y + height));
 
         for (cell of objectList) {
             cell.begehbar = walkable;
