@@ -147,4 +147,23 @@ class Wooden_Door_B extends world_object {
         }
         this.speed = 0;
     }
+
+    class Plains_Terrain extends world_object {
+    /**
+     *
+     * @param { number } x
+     * @param { number } y
+     */
+    constructor(x, y) {
+        let map = assetMap.mystic_woods.tilesets.plains;
+        super("asset", new asset(map, "plains"));
+        this.height, this.width = SQUARE_SIDE_LEN;
+        this.x = x * SQUARE_SIDE_LEN;
+        this.y = y * SQUARE_SIDE_LEN;
+        this.percentTOpixel();
+
+        this.life = -1;
+        this.begehbar = true;
+        this.speed = 0;
+    }
 }
