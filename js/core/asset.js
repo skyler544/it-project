@@ -299,8 +299,8 @@ const assetMap = {
                 },
                 wooden_door_b: new assetMapPart("asset/mystic_woods/tilesets/walls/wooden_door_b.png", 2, 1, 32, 16),
                 wooden_door: new assetMapPart("asset/mystic_woods/tilesets/walls/wooden_door.png", 2, 1, 32, 16),
-                plains: new assetMapPart("asset/mystic_woods/tilesets/plains.png", 6, 8, 96, 128),
-            }
+            },
+            plains: new assetMapPart("asset/mystic_woods/tilesets/plains.png", 6, 8, 96, 128),
         }
     }
 }
