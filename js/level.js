@@ -111,33 +111,73 @@ function level1() {
 function level2() {
     const w = new world();
 
-    // draw a background
     let cols = 20;
     let rows = 13;
-    for (let j = 0; j < rows; j++) {
-        for (let i = 0; i < cols; i++) {
-            let bg;
-            if (j == 0 && i == 0) {
-                bg = new Plains_Terrain("grass corner top left", i, j);
-            } else if (i == cols - 1 && j == 0) {
-                bg = new Plains_Terrain("grass corner top right", i, j);
-            } else if (j == rows - 1 && i == 0) {
-                bg = new Plains_Terrain("grass corner bottom left", i, j);
-            } else if (j == rows - 1 && i == cols - 1) {
-                bg = new Plains_Terrain("grass corner bottom right", i, j);
-            } else if (j == 0) {
-                bg = new Plains_Terrain("grass top", i, j);
-            } else if (j == rows - 1) {
-                bg = new Plains_Terrain("grass bottom", i, j);
-            } else if (i == 0) {
-                bg = new Plains_Terrain("grass left", i, j);
-            } else if (i == cols - 1) {
-                bg = new Plains_Terrain("grass right", i, j);
-            } else {
-                bg = new Plains_Terrain("dirt", i, j);
+
+    // this function should generalize drawing a rectangular terrain form
+    // Usage: The function relies on uniform naming in the Plains_Terrain
+    // object; this can/should be extended for other objects. Ideally, this
+    // function can even be generalized again so that it works with any
+    // world_object where it makes sense to draw it as a rectangle, and where
+    // there are nine components: top right, top left, bottom right, bottom left,
+    // top, bottom, right, left, and fill.
+    let rectangle = function (type, fill, walkable, x, y, length, height) {
+        let objectList = [];
+
+        let tr = " top right";
+        let tl = " top left";
+        let br = " bottom right";
+        let bl = " bottom left";
+        let t = " top";
+        let b = " bottom";
+        let r = " right";
+        let l = " left";
+
+
+        for (let i = 0; i <= length; i++) {
+            for (let j = 0; j <= height; j++) {
+
+                // Draw the four corners
+                if (j == 0 && i == 0) {
+                    objectList.push(new Plains_Terrain(type + tl, x, y));
+                } else if (i == length && j == 0) {
+                    objectList.push(new Plains_Terrain(type + tr, x + length, y));
+                } else if (j == height && i == 0) {
+                    objectList.push(new Plains_Terrain(type + bl, x, y + height));
+                } else if (j == height && i == length) {
+                    objectList.push(new Plains_Terrain(type + br, x + length, y + height));
+                }
+
+                // Draw the borders and the interior
+                else if (j == 0) {
+                    objectList.push(new Plains_Terrain(type + t, x + i, y + j));
+                } else if (j == height) {
+                    objectList.push(new Plains_Terrain(type + b, x + i, y + j));
+                } else if (i == 0) {
+                    objectList.push(new Plains_Terrain(type + l, x + i, y + j));
+                } else if (i == length) {
+                    objectList.push(new Plains_Terrain(type + r, x + i, y + j));
+                } else {
+                    if (fill == "grass") {
+                        // special case, since this sprite is not in the
+                        // Plains_Terrain object
+                        objectList.push(new Grass_Floor(x + i, y + j))
+                    } else {
+                        objectList.push(new Plains_Terrain(fill, x + i, y + j));
+                    }
+                }
+
             }
-            // console.log(bg);
-            w.add(bg);
+        }
+
+        objectList.push(new Plains_Terrain(type + tl, x, y));
+        objectList.push(new Plains_Terrain(type + tr, x + length, y));
+        objectList.push(new Plains_Terrain(type + bl, x, y + height));
+        objectList.push(new Plains_Terrain(type + br, x + length, y + height));
+
+        for (cell of objectList) {
+            cell.begehbar = walkable;
+            w.add(cell);
         }
     }
 
@@ -145,9 +185,9 @@ function level2() {
     // reference objects
     let reference = function () {
         w.add(new Plains_Terrain("grass vertical top", 1, 1));
-        w.add(new Plains_Terrain("grass corner top left", 2, 1));
+        w.add(new Plains_Terrain("grass top left", 2, 1));
         w.add(new Plains_Terrain("grass top", 3, 1));
-        w.add(new Plains_Terrain("grass corner top right", 4, 1));
+        w.add(new Plains_Terrain("grass top right", 4, 1));
         w.add(new Plains_Terrain("dirt grass spot right bottom", 5, 1));
         w.add(new Plains_Terrain("dirt grass spot left bottom", 6, 1));
 
@@ -159,9 +199,9 @@ function level2() {
         w.add(new Plains_Terrain("dirt grass spot left top", 6, 2));
 
         w.add(new Plains_Terrain("grass vertical bottom", 1, 3));
-        w.add(new Plains_Terrain("grass corner bottom left", 2, 3));
+        w.add(new Plains_Terrain("grass bottom left", 2, 3));
         w.add(new Plains_Terrain("grass bottom", 3, 3));
-        w.add(new Plains_Terrain("grass corner bottom right", 4, 3));
+        w.add(new Plains_Terrain("grass bottom right", 4, 3));
         w.add(new Plains_Terrain("dirt grass double spot left", 5, 3));
         w.add(new Plains_Terrain("dirt grass double spot right", 6, 3));
 
@@ -185,9 +225,9 @@ function level2() {
         w.add(new Plains_Terrain("grass rock left top", 6, 6));
 
         w.add(new Plains_Terrain("hill vertical bottom", 1, 7));
-        w.add(new Plains_Terrain("hill corner bottom left", 2, 7));
-        w.add(new Plains_Terrain("hill middle", 3, 7));
-        w.add(new Plains_Terrain("hill corner bottom right", 4, 7));
+        w.add(new Plains_Terrain("hill bottom left", 2, 7));
+        w.add(new Plains_Terrain("hill bottom", 3, 7));
+        w.add(new Plains_Terrain("hill bottom right", 4, 7));
         w.add(new Plains_Terrain("grass rock double spot left", 5, 7));
         w.add(new Plains_Terrain("grass rock double spot right", 6, 7));
 
@@ -197,7 +237,14 @@ function level2() {
         w.add(new Plains_Terrain("hill horizontal right", 4, 8));
     }
 
-    // reference();
+
+    // draw the background
+    rectangle("grass", "dirt", true, 0, 0, cols - 1, rows - 1);
+
+    // draw some hills as obstacles
+    rectangle("hill", "hill", false, 2, 5, 4, 4);
+    rectangle("hill", "hill", false, 8, 2, 1, 9);
+    rectangle("hill", "hill", false, 12, 1, 5, 1);
 
     return w;
 }
