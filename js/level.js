@@ -1,12 +1,12 @@
 /**
- * 
- * @param { Function } next 
- * @returns 
+ *
+ * @param { Function } next
+ * @returns
  */
 function level1() {
     const w = new world();
-     // print 13 lines of blocks == full table
-     for (let j = 0; j < 13; j++) {
+    // print 13 lines of blocks == full table
+    for (let j = 0; j < 13; j++) {
         // print 20 blocks in on the line == full line
         for (let i = 0; i < 20; i++) {
             // create a new component
@@ -27,20 +27,20 @@ function level1() {
 
     let i = 0;
     for (i = 0; i < 4; i++) {
-        let wall2 = new Wall("little brick oben light", 5+i, 3);
+        let wall2 = new Wall("little brick oben light", 5 + i, 3);
         w.add(wall2);
-        let wall4 = new Wall("einzelteil oben links light", 5+i, 3);
+        let wall4 = new Wall("einzelteil oben links light", 5 + i, 3);
         wall4.reverseY();
         w.add(wall4);
-        let wall5 = new Wall("einzelteil oben rechts light", 5+i, 3);
+        let wall5 = new Wall("einzelteil oben rechts light", 5 + i, 3);
         wall5.reverseY();
         w.add(wall5);
     }
 
-    let wall3 = new Wall("ecke oben rechts light", 5+i, 3);
+    let wall3 = new Wall("ecke oben rechts light", 5 + i, 3);
     w.add(wall3);
 
-    let wall5 = new Wall("einzelteil oben links light", 5+i, 3);
+    let wall5 = new Wall("einzelteil oben links light", 5 + i, 3);
     wall5.reverseY();
     w.add(wall5);
 
@@ -53,7 +53,7 @@ function level1() {
     w.add(wall11);
 
     for (i = 0; i < 3; i++) {
-        let wall6 = new Wall("norm light", 4, 4+i);
+        let wall6 = new Wall("norm light", 4, 4 + i);
         w.add(wall6);
     }
 
@@ -86,5 +86,68 @@ function level1() {
 }
 
 function level2() {
-    return new world();
+    const w = new world();
+
+    // draw a background
+    for (let j = 0; j < 13; j++) {
+        for (let i = 0; i < 20; i++) {
+            let bg = new Grass_Floor(i, j);
+            w.add(bg);
+        }
+    }
+
+    // reference objects
+    w.add(new Plains_Terrain("grass vertical top", 1, 1));
+    w.add(new Plains_Terrain("grass corner top left", 2, 1));
+    w.add(new Plains_Terrain("grass top", 3, 1));
+    w.add(new Plains_Terrain("grass corner top right", 4, 1));
+    w.add(new Plains_Terrain("dirt grass spot right bottom", 5, 1));
+    w.add(new Plains_Terrain("dirt grass spot left bottom", 6, 1));
+
+    w.add(new Plains_Terrain("grass vertical middle", 1, 2));
+    w.add(new Plains_Terrain("grass left", 2, 2));
+    w.add(new Plains_Terrain("dirt", 3, 2));
+    w.add(new Plains_Terrain("grass right", 4, 2));
+    w.add(new Plains_Terrain("dirt grass spot right top", 5, 2));
+    w.add(new Plains_Terrain("dirt grass spot left top", 6, 2));
+
+    w.add(new Plains_Terrain("grass vertical bottom", 1, 3));
+    w.add(new Plains_Terrain("grass corner bottom left", 2, 3));
+    w.add(new Plains_Terrain("grass bottom", 3, 3));
+    w.add(new Plains_Terrain("grass corner bottom right", 4, 3));
+    w.add(new Plains_Terrain("dirt grass double spot left", 5, 3));
+    w.add(new Plains_Terrain("dirt grass double spot right", 6, 3));
+
+    w.add(new Plains_Terrain("grass spot", 1, 4));
+    w.add(new Plains_Terrain("grass horizontal left", 2, 4));
+    w.add(new Plains_Terrain("grass horizonal middle", 3, 4));
+    w.add(new Plains_Terrain("grass horizontal right", 4, 4));
+
+    w.add(new Plains_Terrain("hill vertical top", 1, 5));
+    w.add(new Plains_Terrain("hill top left", 2, 5));
+    w.add(new Plains_Terrain("hill top", 3, 5));
+    w.add(new Plains_Terrain("hill top right", 4, 5));
+    w.add(new Plains_Terrain("grass rock right bottom", 5, 5));
+    w.add(new Plains_Terrain("grass rock left bottom", 6, 5));
+
+    w.add(new Plains_Terrain("hill vertical middle", 1, 6));
+    w.add(new Plains_Terrain("hill left", 2, 6));
+    w.add(new Plains_Terrain("hill", 3, 6));
+    w.add(new Plains_Terrain("hill right", 4, 6));
+    w.add(new Plains_Terrain("grass rock right top", 5, 6));
+    w.add(new Plains_Terrain("grass rock left top", 6, 6));
+
+    w.add(new Plains_Terrain("hill vertical bottom", 1, 7));
+    w.add(new Plains_Terrain("hill corner bottom left", 2, 7));
+    w.add(new Plains_Terrain("hill middle", 3, 7));
+    w.add(new Plains_Terrain("hill corner bottom right", 4, 7));
+    w.add(new Plains_Terrain("grass rock double spot left", 5, 7));
+    w.add(new Plains_Terrain("grass rock double spot right", 6, 7));
+
+    w.add(new Plains_Terrain("hill spot", 1, 8));
+    w.add(new Plains_Terrain("hill horizontal left", 2, 8));
+    w.add(new Plains_Terrain("hill horizontal middle", 3, 8));
+    w.add(new Plains_Terrain("hill horizontal right", 4, 8));
+
+    return w;
 }
