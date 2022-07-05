@@ -1,0 +1,23 @@
+#+title: Architecture
+
+#+OPTIONS: author:nil
+#+OPTIONS: toc:nil
+#+OPTIONS: \n:t
+#+OPTIONS: num:2
+#+LATEX_HEADER: \usepackage{helvet}
+#+LATEX_HEADER: \renewcommand{\familydefault}{\sfdefault}
+
+
+* Program Architecture
+** index.html
+Contains the game canvas and links to the script files; this is what the browser loads and renders.
+** anim-tester.html
+Auxiliary web page used for loading test code separately.
+** js/main.js
+Contains the main program loop. This is where the html canvas gets initialised and where the assets/player/levels are prepared and initialised. The ~movePlayer~ function contains the logic for handling key events and keeping the player from leaving the boundaries of the map.
+** js/level.js
+Contains the game levels, which are written as separate functions. These functions are enumerated so that they can be sequentially started in the main function. The levels consist of commands for placing ~world_objects~ and logic for placing enemies in the world.
+** js/config.js
+Intended to be used for holding global variables that should be available from anywhere within the program, such that they can be easily changed in this single location to change the game's behavior. The file currently only contains a single global variable however.
+** js/anim-tester.js
+A file used to separately test logic for input handling and a proof of concept for animating the sprites. As the animation consists of some number of frames placed next to each other in the sprite file, animating them means showing only a single frame at a time and clearing the previous frame. It works by cropping the visible area of the sprite to the size of a single animation frame, and then moving this cropped area to the next animation frame in order. If there are six frames, this can be achieved by enumerating the frames and displaying them in a loop using ~mod 6~ to access the correct frame.
