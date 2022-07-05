@@ -79,11 +79,11 @@ class world {
              * @param { world_object } obj
              * @param { number } index
              */
-            (obj, index, object) => {
+            (obj, index) => {
                 // if life == 0 and the object is not already destroying itself
                 if (obj.life == 0 && !obj.destroying) {
                     obj.destroying = true;
-                    let doit = () => { this.comps.splice(index, 1); };
+                    let doit = () => { this.comps.splice(index, 1); obj.destroying = false; };
                     obj.destroy(doit);
                 }
         });
