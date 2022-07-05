@@ -15,7 +15,7 @@ var gameArea = {
     resize: function () { // absolute size not important! -> only proportion
         // resizing only dependent from height - don't make it also dependent from the width, beacause then the proportion will be lost!!!
         gameArea.canvas.height = window.innerHeight * 3;  // * 3 for better resolution
-        gameArea.canvas.width = gameArea.canvas.height * GAME_FRAMERATE // GAME_FRAMERATE times as wide as the height - can / should be changed
+        gameArea.canvas.width = gameArea.canvas.height * GAME_PROPORTION // GAME_FRAMERATE times as wide as the height - can / should be changed
     },
     clear: function () {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
