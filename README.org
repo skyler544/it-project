@@ -1,5 +1,9 @@
-# Welcome to the Jungle
+* Welcome to the Jungle
 
 A JavaScript pixelart RPG.
 
-Credit: https://game-endeavor.itch.io/mystic-woods
+* Documentation:
+[[file:documentation/Manual.org][Manual]]
+
+
+* Credit: https://game-endeavor.itch.io/mystic-woods
