@@ -54,6 +54,21 @@ class Wall extends Floor {
     }
 }
 
+class Fence extends Floor {
+    /**
+     *
+     * @param { string } name
+     * @param { number } x
+     * @param { number } y
+     */
+    constructor(name, x, y) {
+        let map = assetMap.mystic_woods.tilesets.fences;
+        super(name, x, y, map);
+
+        this.begehbar = false;
+    }
+}
+
 class Grass_Floor extends Floor {
     /**
      *
