@@ -3,8 +3,8 @@
 A JavaScript pixelart RPG.
 
 ** Documentation:
-[[file:documentation/Manual.org][Manual]]
-[[file:documentation/Architecture.org][Architecture]]
+- [[file:documentation/Manual.org][Manual]]
+- [[file:documentation/Architecture.org][Architecture]]
 
 -----
 
