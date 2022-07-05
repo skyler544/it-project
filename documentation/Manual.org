@@ -11,6 +11,11 @@
 * Welcome to the Jungle
 A JavaScript pixel art RPG
 
+** Group 7
+- Max Ornik
+- Marcel Sziener
+- Skyler Mayfield
+
 ** Deployment
 1. Clone the repository
    - ~$ git clone https://github.com/skyler544/it-project~

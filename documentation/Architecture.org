@@ -1,12 +1,15 @@
 #+title: Architecture
 
 #+OPTIONS: author:nil
-#+OPTIONS: toc:nil
 #+OPTIONS: \n:t
 #+OPTIONS: num:2
 #+LATEX_HEADER: \usepackage{helvet}
 #+LATEX_HEADER: \renewcommand{\familydefault}{\sfdefault}
 
+* Group 7
+- Max Ornik
+- Marcel Sziener
+- Skyler Mayfield
 
 * Program Architecture
 ** ~index.html~

@@ -1,4 +1,4 @@
-% Created 2022-07-05 Tue 12:33
+% Created 2022-07-05 Tue 14:32
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -27,61 +27,70 @@
 \begin{document}
 
 \maketitle
+\tableofcontents
 
+
+\section{Group 7}
+\label{sec:orgd5d011a}
+\begin{itemize}
+\item Max Ornik\\
+\item Marcel Sziener\\
+\item Skyler Mayfield\\
+\end{itemize}
 
 \section{Program Architecture}
-\label{sec:org5c30941}
+\label{sec:org422a9f4}
 \subsection{\texttt{index.html}}
-\label{sec:org05d4b2e}
+\label{sec:org6ded173}
 Contains the game canvas and links to the script files; this is what the browser loads and renders.\\
 \subsection{\texttt{anim-tester.html}}
-\label{sec:org50b6e52}
+\label{sec:org1e37437}
 Auxiliary web page used for loading test code separately.\\
 \subsection{\texttt{js/main.js}}
-\label{sec:orgaf183d3}
+\label{sec:org579b95b}
 Contains the main program loop. This is where the html canvas gets initialised and where the assets/player/levels are prepared and initialised. The \texttt{movePlayer} function contains the logic for handling key events and keeping the player from leaving the boundaries of the map.\\
 \subsection{\texttt{js/level.js}}
-\label{sec:orge92b4f0}
+\label{sec:org492efbd}
 Contains the game levels, which are written as separate functions. These functions are enumerated so that they can be sequentially started in the main function. The levels consist of commands for placing \texttt{world\_objects} and logic for placing enemies in the world.\\
 \subsection{\texttt{js/config.js}}
-\label{sec:org131b421}
+\label{sec:orgdc6f78b}
 Intended to be used for holding global variables that should be available from anywhere within the program, such that they can be easily changed in this single location to change the game's behavior.\\
 \subsection{\texttt{js/anim-tester.js}}
-\label{sec:orge456551}
+\label{sec:orgcd80969}
 A file used to separately test logic for input handling and a proof of concept for animating the sprites. As the animation consists of some number of frames placed next to each other in the sprite file, animating them means showing only a single frame at a time and clearing the previous frame. It works by cropping the visible area of the sprite to the size of a single animation frame, and then moving this cropped area to the next animation frame in order. If there are six frames, this can be achieved by enumerating the frames and displaying them in a loop using \texttt{mod 6} to access the correct frame.\\
 \subsection{\texttt{js/world/character.js}}
-\label{sec:org0daffd0}
+\label{sec:orgc28d628}
 The character is a special class that contains information about the animations. The sprites have different sets of animations, which need to be played under certain situations. The player, for instance, uses a breathing animation as the idle animation, a walking animation while moving, and a slashing animation when attacking. All of this is connected with logic such that the current state is always known and can be used to play the correct animation or determine how much health the player has left. The player and the enemies both inherit the functionality of their parent class \texttt{Character} and add additional functionality specific to each case.\\
 \subsection{\texttt{js/world/pokemon\_fight.js}}
-\label{sec:org02f5229}
+\label{sec:org081555f}
 This file contains the logic of the pokemon style fight system. This works by starting a new \texttt{world} object specifically for the fight scene; the state of the main game world is not touched other than to remove the monster if the player wins. Drawing the fight scene works analogously to drawing a level, but the input is restricted to the options needed to make the fight work.\\
 \subsection{\texttt{js/world/world.js}}
-\label{sec:org3e5c52d}
+\label{sec:org45de465}
 This file contains the logic for holding the state of a world. All of the objects drawn in the world belong to the world, allowing the programmer to create levels simply by making a world object and drawing in that world. The drawn objects have properties, and the world object is responsible for checking and acting on the properties; the player cannot walk through walls for instance, and when the player encounters a monster, a fight begins.\\
 \subsection{\texttt{js/world/world\_objects.js}}
-\label{sec:org93f4a3b}
+\label{sec:org44357f0}
 The class hierarchy for world objects is set up so that inheritance makes adding objects with specific properties very simple. Adding a new walkable surface for instance only involves adding a child class of \texttt{Floor} and specifying which asset map contains the sprites and the index of the sprites which should be drawn.\\
 \subsection{\texttt{js/core/move.js}}
-\label{sec:org90fbbb0}
+\label{sec:orgdd9439d}
 This file contains movement logic that translates simple values into percentages for drawing on the responsive canvas.\\
 \subsection{\texttt{js/core/events.js}}
-\label{sec:orgeca1307}
+\label{sec:org3d61063}
 This file contains key handling logic. The event handler can be instantiated as an object, making using it very simple.\\
 \subsection{\texttt{js/core/draw.js}}
-\label{sec:org4617909}
+\label{sec:org9956f25}
 This file sets up the canvas so that it responds to the window size.\\
 \subsection{\texttt{js/core/component.js}}
-\label{sec:org14de340}
+\label{sec:org0b858c0}
 In order to make drawing the sprites a reality, we needed a data structure to represent an object that can be drawn on the canvas. Therefore, this class is very general; it can be used to draw JavaScript shapes, text, or sprites from the asset pack. These objects need to be scaled with the window so that the proportions don't change.\\
 \subsection{\texttt{js/core/asset.js}}
-\label{sec:org2d5091c}
+\label{sec:orgde09f3c}
 This file sets up an interface for mapping the sprite sheets from the asset pack to objeccts that can be indexed and instantiated by name. This means that we had to examine the sprite sheets and figure out the grid size, which is 16x16 pixels. This grid can then be indexed, by saying that in a certain sprite sheet there is a sprite component in column 2 row 4 that looks like a tuft of grass. This information is then used when drawing, which makes writing levels very simple.\\
 \subsection{\texttt{js/core/animation.js}}
-\label{sec:org8edb051}
+\label{sec:org15187d0}
 This file contains the logic for sequentially displaying animation frames in different ways; some animations are intended to loop and some are intended to be played in order once. This requires separate functions.\\
 
 \noindent\rule{\textwidth}{0.5pt}
 \subsection{A note about this document}
-\label{sec:org2c05ad5}
+\label{sec:orgd5ae72d}
 Both the Open Document and Latex versions of the document were generated using the free and open source tool \texttt{pandoc}.\\
 \end{document}

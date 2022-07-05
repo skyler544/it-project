@@ -2,11 +2,15 @@
 
 A JavaScript pixelart RPG.
 
+** Group 7
+- Max Ornik
+- Marcel Sziener
+- Skyler Mayfield
+
 ** Documentation:
 - [[file:documentation/Manual.org][User and Deployment Manual]]
 - [[file:documentation/Architecture.org][Architecture]]
 - [[https://trello.com/b/OsiNt6TQ][Trello]]
 
 -----
-
 ** Credit: https://game-endeavor.itch.io/mystic-woods
