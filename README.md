@@ -1,4 +1,4 @@
-# Welcome to the jungle
+# Welcome to the Jungle
 
 A JavaScript pixelart RPG.
 
