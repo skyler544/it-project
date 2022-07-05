@@ -53,7 +53,7 @@ function main() {
     var intervall;
     let loadWorld = function () {
         ev.start();
-        intervall = setInterval(repeat, 60);
+        intervall = setInterval(repeat, GAME_FRAMERATE);
     }
 
     let oldX = player.x;
