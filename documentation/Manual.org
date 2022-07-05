@@ -32,6 +32,7 @@ As gamers ourselves, we were inspired by pixel art aesthetics and fond memories 
 2. Git
    Using git effectively is a hard requirement of collaborative development. Version control not only makes developing code safer, it provides a form of documentation as well. Writing a commit message to explain what one did and why is an important consideration when working with others, especially if what the code does is not immediately obvious to everyone involved. Plus it's fun!
 
+   -----
 
 ** A note about this document
 Both the Open Document and Latex versions of the document were generated using the free and open source tool ~pandoc~.

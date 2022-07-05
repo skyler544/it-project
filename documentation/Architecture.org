@@ -34,3 +34,14 @@ This file contains movement logic that translates simple values into percentages
 ** js/core/events.js
 This file contains key handling logic. The event handler can be instantiated as an object, making using it very simple.
 ** js/core/draw.js
+This file sets up the canvas so that it responds to the window size.
+** js/core/component.js
+In order to make drawing the sprites a reality, we needed a data structure to represent an object that can be drawn on the canvas. Therefore, this class is very general; it can be used to draw JavaScript shapes, text, or sprites from the asset pack. These objects need to be scaled with the window so that the proportions don't change.
+** js/core/asset.js
+This file sets up an interface for mapping the sprite sheets from the asset pack to objeccts that can be indexed and instantiated by name. This means that we had to examine the sprite sheets and figure out the grid size, which is 16x16 pixels. This grid can then be indexed, by saying that in a certain sprite sheet there is a sprite component in column 2 row 4 that looks like a tuft of grass. This information is then used when drawing, which makes writing levels very simple.
+** js/core/animation.js
+This file contains the logic for sequentially displaying animation frames in different ways; some animations are intended to loop and some are intended to be played in order once. This requires separate functions.
+
+-----
+** A note about this document
+Both the Open Document and Latex versions of the document were generated using the free and open source tool ~pandoc~.
