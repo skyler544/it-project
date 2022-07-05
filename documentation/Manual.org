@@ -36,8 +36,18 @@ As gamers ourselves, we were inspired by pixel art aesthetics and fond memories 
 Some of the code makes use of jQuery as well.
 *** Git
 Using git effectively is a hard requirement of collaborative development. Version control not only makes developing code safer, it provides a form of documentation as well. Writing a commit message to explain what one did and why is an important consideration when working with others, especially if what the code does is not immediately obvious to everyone involved. Plus it's fun!
+*** Trello
+Having this project planning tool made keeping track of what exactly we were doing and how we wanted to do it much easier.
+*** Discord
+As a communications platform, Discord is hard to beat when it comes to staying connected and keeping each other in the loop.
+*** Google Drive
+Realtime collaborative editing.
+*** Emacs Org-Mode
+Writing documentation and planning deadlines, ~org-mode~ does it all.
+
+** Project Status
+The game "engine" is finished. Everything needed to make the game possible is there. However, the project is still in what we would call "alpha." There's enough to show that the game works, but it needs more levels and variety. The framework can easily be expanded to make this happen.
 
    -----
-
 ** A note about this document
 Both the Open Document and Latex versions of the document were generated using the free and open source tool ~pandoc~.
