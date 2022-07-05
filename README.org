@@ -11,6 +11,7 @@ A JavaScript pixelart RPG.
 - [[file:documentation/Manual.org][User and Deployment Manual]]
 - [[file:documentation/Architecture.org][Architecture]]
 - [[https://trello.com/b/OsiNt6TQ][Trello]]
+- [[https://github.com/skyler544/it-project][Repository]]
 
 -----
 ** Credit: https://game-endeavor.itch.io/mystic-woods

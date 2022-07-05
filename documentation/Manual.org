@@ -19,7 +19,7 @@ A JavaScript pixel art RPG
 1. Clone the repository
    - ~$ git clone https://github.com/skyler544/it-project~
 2. Navigate to the repository application directory with your shell or file browser.
-   - ~$ cd it-project/application~
+   - ~$ cd it-project/SourceCode~
 3. Open ~index.html~ with the web browser of your choice
    - ~$ firefox index.html~
 
