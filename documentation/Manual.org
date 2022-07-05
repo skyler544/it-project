@@ -1,7 +1,6 @@
 #+title: User and Deployment Manual
 
 #+OPTIONS: author:nil
-#+OPTIONS: toc:nil
 #+OPTIONS: \n:t
 #+OPTIONS: num:2
 #+LATEX_HEADER: \usepackage{helvet}
