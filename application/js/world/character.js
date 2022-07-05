@@ -2,7 +2,7 @@ class Character extends world_object {
     isMoving = false;
     begehbar = false;
     isAttacking = false;
-    animrate = 60;
+    animrate = ANIMRATE_DEFAULT;
 
     // which assets are needed for the animation
     assets = {
@@ -64,9 +64,10 @@ class Player extends Character {
         this.assets.slash = [14, 15];
         this.assets.destroy = [17, 18, 19];
 
-        this.life = 5;
+        this.life = PLAYER_LIFE;
         this.damage = 1;
         this.speed = 1; // 1%
+        this.animrate = ANIMRATE_PLAXER;
         this.blick_richtung_rechts = true;
         this.init();
 
@@ -127,10 +128,10 @@ class Slime extends Character {
         this.assets.littlejump = [18, 19, 20];
         this.assets.destroy = [21, 22, 23, 24, 25];
 
-        this.life = 1;
+        this.life = SLIME_LIFE;
         this.damage = 1;
         this.speed = 1; // 1%
-        this.animrate = 100;
+        this.animrate = ANIMRATE_SLIME;
         this.blick_richtung_rechts = true;
         this.init();
 

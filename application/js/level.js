@@ -6,9 +6,9 @@
 function level1() {
     const w = new world();
     // print 13 lines of blocks == full table
-    for (let j = 0; j < 13; j++) {
+    for (let j = 0; j < GAME_ROWS; j++) {
         // print 20 blocks in on the line == full line
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < GAME_COLUMS; i++) {
             // create a new component
             let BLOCK;
             if (i < 3 || j < 2 || j > 10 || i > 16) {
@@ -80,11 +80,24 @@ function level1() {
         } else { i--; }
     }
 
-    for (i = 0; i < 5; i++) {
+    for (i = 0; i < SLIME_LEVEL1_COUNT; i++) {
         let x = Random(0, 19);
         let y = Random(0, 12);
-        let slime = new Slime(x, y);
-        w.add(slime);
+        let possible = true;
+        let trueX = gameArea.percentTOpixel(x * SQUARE_SIDE_LEN);
+        let trueY = gameArea.percentTOpixel(y * SQUARE_SIDE_LEN);
+        let other = w.at(trueX, trueY);
+        other.forEach(
+            /**
+             *
+             * @param { world_object } obj
+             */
+            (obj) => {
+                if (!obj.begehbar) { possible = false; }
+            });
+        if (possible) {
+            w.add(new Slime(x, y));
+        } else { i--; }
     }
 
     return w;
@@ -93,8 +106,8 @@ function level1() {
 function level2() {
     const w = new world();
 
-    let cols = 20;
-    let rows = 13;
+    let cols = GAME_COLUMS;
+    let rows = GAME_ROWS;
 
     // this function should generalize drawing a rectangular terrain form
     // Usage: The function relies on uniform naming in the Plains_Terrain
@@ -235,7 +248,7 @@ function level2() {
 
 
     // add slimes to fight
-    for (i = 0; i < 5; i++) {
+    for (i = 0; i < SLIME_LEVEL2_COUNT; i++) {
         let x = Random(0, 19);
         let y = Random(0, 12);
         let slime = new Slime(x, y);
