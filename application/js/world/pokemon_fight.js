@@ -82,7 +82,7 @@ function pokemon_fight(player, enemy, callback) {
     counterP.x = 1 * SQUARE_SIDE_LEN; counterE.x = 18 * SQUARE_SIDE_LEN;
     counterP.y = counterE.y = 1 * SQUARE_SIDE_LEN;
     counterP.width = counterE.width = 3;
-    counterP.height = counterE.height = "Arial";
+    counterP.height = counterE.height = TEXT_FONT_FAMILY;
     counterP.color = counterE.color = "black";
     counterP.percentTOpixel();
     counterE.percentTOpixel();
@@ -98,7 +98,7 @@ function pokemon_fight(player, enemy, callback) {
     
     let text_to_display = options;
     let text = new component("text", text_to_display);
-    text.height = "Arial";
+    text.height = TEXT_FONT_FAMILY;
     text.width = 3;
     text.color = "white";
     text.x = 1 * SQUARE_SIDE_LEN;

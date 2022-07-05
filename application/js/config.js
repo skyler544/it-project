@@ -17,3 +17,6 @@ const SLIME_LEVEL2_COUNT = 5;
 const ANIMRATE_DEFAULT = 60; // default
 const ANIMRATE_PLAXER = ANIMRATE_DEFAULT; // player -> default
 const ANIMRATE_SLIME = 100; // slime should be slower
+
+// text
+const TEXT_FONT_FAMILY = "Arial";

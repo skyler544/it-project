@@ -64,7 +64,6 @@ function main() {
         }
         let coll_res = w.check_collision(player, oldX, oldY);
         if (coll_res == "clear") {
-            console.log(coll_res);
             next_level();
         } else if (typeof coll_res == "object") {
             clearInterval(intervall);
@@ -77,6 +76,35 @@ function main() {
             movePlayer();
         }
         w.check_destroyed();
+        if (player.life == 0 && !player.destroying && !player.isAttacking) {
+            console.log(player.life);
+            clearInterval(intervall);
+            ev.end();
+            let lost_text1 = new component("text", "Game Over! You lost!");
+            lost_text1.width = 10;
+            lost_text1.height = TEXT_FONT_FAMILY;
+            lost_text1.x = 2;
+            lost_text1.y = 30;
+            lost_text1.percentTOpixel();
+            w.add(lost_text1);
+
+            let lost_text2 = new component("text", "Press Enter to play again.");
+            lost_text2.width = 5;
+            lost_text2.height = TEXT_FONT_FAMILY;
+            lost_text2.x = 20;
+            lost_text2.y = 35;
+            lost_text2.percentTOpixel();
+            w.add(lost_text2);
+            w.print();
+
+            let again = (e) => {
+                if (e.key == "Enter") {
+                    document.removeEventListener("keyup", again);
+                    location.reload();
+                }
+            }
+            document.addEventListener("keyup", again);
+        }
         w.print();
     }
 
