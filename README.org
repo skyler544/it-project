@@ -2,8 +2,9 @@
 
 A JavaScript pixelart RPG.
 
-* Documentation:
+** Documentation:
 [[file:documentation/Manual.org][Manual]]
 
+-----
 
-* Credit: https://game-endeavor.itch.io/mystic-woods
+** Credit: https://game-endeavor.itch.io/mystic-woods
