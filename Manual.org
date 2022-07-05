@@ -1,0 +1,37 @@
+#+title: Manual
+
+#+OPTIONS: author:nil
+#+OPTIONS: toc:nil
+#+OPTIONS: \n:t
+#+OPTIONS: num:2
+#+LATEX_HEADER: \usepackage{helvet}
+#+LATEX_HEADER: \renewcommand{\familydefault}{\sfdefault}
+
+
+* Welcome to the Jungle
+A JavaScript pixel art RPG
+** Usage
+1. Clone the repository
+   - ~$ git clone https://github.com/skyler544/it-project~
+2. Navigate to the repository directory with your shell or file browser.
+   - ~$ cd it-project~
+3. Open ~index.html~ with the web browser of your choice
+   - ~$ firefox index.html~
+4. Play the game!
+   Controls:
+   - ~w~, ~a~, ~s~, ~d~ or arrow keys for movement
+   - ~enter~ to attack
+   Combat controls:
+   - Combat automatically begins when you encounter a monster; use the menu to select your action. Try not to die!
+   Use doors to move between levels.
+** Motivation
+As gamers ourselves, we were inspired by pixel art aesthetics and fond memories of playing pixel art games. Furthermore, since JavaScript is a very widely used language, we considered that making a large project in JavaScript would be a great way to sharpen our skills.
+** Technology Used
+1. JavaScript (obviously)
+   Some of the code makes use of jQuery as well.
+2. Git
+   Using git effectively is a hard requirement of collaborative development. Version control not only makes developing code safer, it provides a form of documentation as well. Writing a commit message to explain what one did and why is an important consideration when working with others, especially if what the code does is not immediately obvious to everyone involved. Plus it's fun!
+
+
+** A note about this document
+Both the Open Document and Latex versions of the document were generated using the free and open source tool ~pandoc~.
